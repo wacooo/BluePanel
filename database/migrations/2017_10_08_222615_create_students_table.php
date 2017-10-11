@@ -8,7 +8,7 @@ class CreateStudentsTable extends Migration {
 	public function up()
 	{
 		Schema::create('students', function(Blueprint $table) {
-			$table->integer('id')->unique();
+			$table->integer('id')->unique()->unsigned();
 			$table->string('first');
 			$table->string('last');
 			$table->char('gender');

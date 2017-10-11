@@ -12,7 +12,7 @@ class KioskStudent extends Model
 
     public function student()
     {
-        return $this->belongsTo('Student');
+        return $this->belongsTo('App\Student');
     }
 
 }

@@ -12,7 +12,7 @@ class KioskLogs extends Model
 
     public function kiosk()
     {
-        return $this->belongsTo('Kiosk');
+        return $this->belongsTo('App\Kiosk');
     }
 
 }

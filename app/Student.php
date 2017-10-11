@@ -12,7 +12,7 @@ class Student extends Model
 
     public function logs()
     {
-        return $this->hasMany('KioskLogs');
+        return $this->hasMany('App\KioskLogs');
     }
 
 }

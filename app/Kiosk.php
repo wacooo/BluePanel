@@ -12,7 +12,11 @@ class Kiosk extends Model
 
     public function students()
     {
-        return $this->hasMany('KioskStudent');
+        return $this->hasMany('App\KioskStudent');
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\User');
     }
 
 }

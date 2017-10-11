@@ -12,6 +12,7 @@ class CreateUserKiosksTable extends Migration {
 			$table->timestamps();
 			$table->integer('user_id')->unsigned();
 			$table->integer('kiosk_id')->unsigned();
+			$table->boolean('isadmin')->default(0);
 		});
 	}
 

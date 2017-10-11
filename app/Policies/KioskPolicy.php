@@ -19,7 +19,9 @@ class KioskPolicy
      */
     public function view(User $user, Kiosk $kiosk)
     {
-        return $user->permissions()->contains($kiosk.id);
+        //Verify that the user has permissions via the pivot table
+        return $user->kiosks()->where('kiosk_id', $kiosk->id)->first();
+
     }
 
     /**
@@ -54,6 +56,6 @@ class KioskPolicy
      */
     public function delete(User $user, Kiosk $kiosk)
     {
-        //
+
     }
 }
