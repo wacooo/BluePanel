@@ -8,7 +8,7 @@ class CreateKiosksTable extends Migration {
 	public function up()
 	{
 		Schema::create('kiosks', function(Blueprint $table) {
-			$table->increments('id');
+			$table->increments('id')->unsigned();
 			$table->timestamps();
 			$table->string('name');
 			$table->integer('room');
