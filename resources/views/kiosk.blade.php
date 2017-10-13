@@ -35,15 +35,7 @@
             margin: 3px 2px;
             cursor: pointer;
         }
-        .footer {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 1rem;
-            background-color: #efefef;
-            text-align: center;
-        }
+        
     </style>
 
     <script type="text/javascript">
