@@ -12,6 +12,8 @@ class CreateKiosksTable extends Migration {
 			$table->timestamps();
 			$table->string('name');
 			$table->integer('room');
+			$table->string('logo');
+			$table->string('background');
 		});
 	}
 
