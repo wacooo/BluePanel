@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 
-
+@include('partials.header')
 </head>
 <body>
     @include('partials.nav')
