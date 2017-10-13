@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function kiosks()
     {
-        return $this->belongsToMany('App\Kiosk','user_kiosks');
+        return $this->belongsToMany('App\Kiosk','kiosk_users');
     }
 
     public function isAdministrator(){
