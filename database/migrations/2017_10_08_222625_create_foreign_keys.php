@@ -8,12 +8,12 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('user_kiosks', function(Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('user_kiosks', function(Blueprint $table) {
 			$table->foreign('kiosk_id')->references('id')->on('kiosks')
 						->onDelete('cascade')
 						->onUpdate('cascade');
@@ -42,11 +42,11 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
-		Schema::table('kiosk_users', function(Blueprint $table) {
-			$table->dropForeign('kiosk_users_user_id_foreign');
+		Schema::table('user_kiosks', function(Blueprint $table) {
+			$table->dropForeign('user_kiosks_user_id_foreign');
 		});
-		Schema::table('kiosk_users', function(Blueprint $table) {
-			$table->dropForeign('kiosk_users_kiosk_id_foreign');
+		Schema::table('user_kiosks', function(Blueprint $table) {
+			$table->dropForeign('user_kiosks_kiosk_id_foreign');
 		});
 		Schema::table('kiosk_students', function(Blueprint $table) {
 			$table->dropForeign('kiosk_students_student_id_foreign');
