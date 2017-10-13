@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserKiosks extends Model 
+class KioskUsers extends Model
 {
 
-    protected $table = 'user_kiosks';
+    protected $table = 'kiosk_users';
     public $timestamps = true;
 
 }
