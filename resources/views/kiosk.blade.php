@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!--<link href="CSS/bootstrap.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{asset('css/alertify.css')}}">
+    <title>LibTrackPro</title>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/mask.js') }}"></script>
+    <script src="{{ asset('js/alertify.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <style>
+        body {
+            font-family: Helvetica;
+            background-color: #cac5ca
+        }
+        input[type=text] {
+            width: 15%;
+            padding: 12px 20px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+        button[type=button], input[type=submit], input[type=reset] {
+            background-color: #121117;
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            margin: 3px 2px;
+            cursor: pointer;
+        }
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #efefef;
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtboxToFilter").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    // Allow: Ctrl/cmd+A
+                    (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+C
+                    (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: Ctrl/cmd+X
+                    (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+    <script>
+        jQuery(function ($) {
+            $("#input").mask("999-999-999", {placeholder: " "});//Auto Formatting
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#button').click(function (e) {
+                var inputvalue =  parseInt($("#input").val().replace(/-/g, ""));
+                $("#input").val('');
+                $('#input').focus();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        'REQ-TYPE':'toggle'
+                    },
+                    type: "UPDATE",
+                    async: true,
+                    url: '/kiosk/{{$kiosk->ID}}',
+                    data: JSON.stringify({'id': inputvalue}),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (msg) {
+                        console.log(msg);
+                        console.log(JSON.stringify(msg));
+                        if(msg.code == "in"){
+                            signin(msg.student);
+                        }
+                        if(msg.code == "out"){
+                            signout(msg.student);
+                        }
+                        if(msg.code == "error"){
+                            errormsg();
+                        }
+                    },
+                    error: function (err) {
+                        alert(err.responseText)
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function signin(student) {
+            swal({
+                title: "Welcone " + student.First + " " + student.Last,
+                text: "You were signed into the library.",
+                icon: "success",
+                type:"success",
+                timer:"5000"
+            });
+        }
+        function signout(student) {
+            swal({
+                title: "Goodbye " + student.First + " " + student.Last,
+                text: "You were signed out of the library.",
+                icon: "success",
+                type:"success",
+                timer:"5000"
+            });
+        }
+        function errormsg() {
+            swal({
+                title: "ERROR!",
+                icon: "error",
+                text: "The student was not found or there was an unexpected database error.",
+                type:"error",
+                timer:"5000"
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<div class="text-center">
+    <img style="margin-top: 10vh; margin-bottom:3vh;" src="{{asset('img/14.png')}}" alt="HB Beal" height="400vh"><br>
+    <h2 class="text-center">{{$kiosk->name}}</h2>
+    <input type="text" style="text-align: center" id="input" onkeydown="if (event.keyCode == 13)
+                        document.getElementById('button').click()" autofocus><br>
+    <button type="button" id="button">Sign in</button>
+
+</div>
+
+
+</body>
+
+</html>
