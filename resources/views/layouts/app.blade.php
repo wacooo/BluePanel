@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-
+    @stack('styles')
 @include('partials.header')
 </head>
 <body>
