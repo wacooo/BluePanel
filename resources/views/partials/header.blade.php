@@ -8,10 +8,10 @@
 <title>{{ config('app.name', 'Laravel') }}</title>
 
 <!-- Styles -->
-<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/css/bootstrap.css') }}" rel="stylesheet">
 
-<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/hover.css') }}" rel="stylesheet">
-<link href="{{ asset('css/morebuttons.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/css/hover.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/css/morebuttons.css') }}" rel="stylesheet">
 
 
