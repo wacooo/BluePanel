@@ -26,28 +26,28 @@
                         <div class="form-group">
                             <label for="email" class="control-label">Email</label>
                             <div>
-                                <input readonly="" type="email" name="email" value="mikeplayzmc1@gmail.com"
+                                <input readonly="" type="email" name="email" value="filler@fakeemail.com"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Username</label>
                             <div>
-                                <input readonly="" type="text" name="username" value="metro"
+                                <input readonly="" type="text" name="username" value="userdude123"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client First Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_first" value="Michael"
+                                <input readonly="" type="text" name="name_first" value="Bob"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client Last Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_last" value="Carr"
+                                <input readonly="" type="text" name="name_last" value="Ross"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
