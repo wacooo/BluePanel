@@ -2,17 +2,17 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 
-    @include('partials.admin.head')
+    @include('partials.head')
 
     @stack('styles')
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        @include('partials.admin.header')
+        @include('partials.header')
     </header>
     <aside class="main-sidebar">
-        @include('partials.admin.nav')
+        @include('partials.nav')
     </aside>
     <div class="content-wrapper">
         <section class="content-header">
@@ -27,7 +27,7 @@
 
 
 </div>
-@include('partials.admin.footer')
+@include('partials.footer')
 <!-- Scripts -->
 @stack('scripts')
 
