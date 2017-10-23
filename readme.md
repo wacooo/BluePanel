@@ -1,22 +1,22 @@
-RaiderLogger is a tool requested by the librarian at H.B Beal S.S. The current features of the web application are:
-   - Allow a kiosk type machine to scan they barcodes on student cards thus logging their entry to the library.
-  - Provide an intuitive interface for library staff to be able to see the logs in an effective and efficient mannor.
-  - Import the markbook file containing all of the current student data into a local MySQL database.
+#BluePanel
 
-### Planned Features
+*Because a piece of paper isn't good enough*
+BluePanel is a tool designed for H.B Beal secondary school to log students going into support rooms. Teachers will be able to view theese statistics via the web gui. There is a permissions system in which is outlined below. This project is open source and we invite anyone to contribute and use this amazing tool.
 
-  - Keep notes on specific students
-  - Manually check in and out students from the admin panel
-  - Log manipulation/notes
-  - Course counter to indicate weither the student currently has a spare.
-  - Comparison with another document to see when said spare is
+###Permissions System
+BluePanel has three different permissions levels, each higher group inherits the permissions from the groups below it.
+*Administrator*
+This rank allows full access to logs managment, kiosk creation, kiosk editing, user managment and kiosk permissions managment.
+*User*
+This rank allows users to view and edit the kiosks assigned to them as well as get logs from the past week.
+*Guest*
+This rank is the default and requires no account to use, it is accessible from a unique URL. This rank allows the user to view logs from the past day and view students currently in the kiosks.
 
-### Development
+## Development
 
-Want to contribute? Great!
+###Want to contribute? Great!
 
-RaiderLogger uses the Laravel framework for efficient organization and processing.
-Make a pull request or an issue and I will try to impliment it.
+BluePanel uses the Laravel framework as well as AdminLTE for the dashboard theme, if you want to make a contribution simply fork it, push it and make a pull request.
 
 License
 ----
