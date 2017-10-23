@@ -56,7 +56,9 @@ class UserController extends Controller
    */
   public function edit($id)
   {
-    
+    $user = User::findOrFail($id)->with('kiosks')->first();
+    return view('edituser')->with('user', $user);
+
   }
 
   /**
