@@ -17,7 +17,7 @@ class KioskController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('adminlte')->except(['index', 'show']);
+        $this->middleware('admin')->except(['index', 'show']);
         $this->authorizeResource(\App\Kiosk::class);
 
     }
