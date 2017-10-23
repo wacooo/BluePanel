@@ -29,7 +29,7 @@ class IsAdministrator {
             }
             else
             {
-                return response('Sorry but you aren\'t an admin :P', 403);
+                return response('Sorry but you aren\'t an adminlte :P', 403);
             }
         }
 

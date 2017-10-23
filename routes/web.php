@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/kiosk', 'KioskController');
+
+Route::get('/test', function () {
+    return view('admin.test');
+});
