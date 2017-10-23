@@ -26,28 +26,28 @@
                         <div class="form-group">
                             <label for="email" class="control-label">Email</label>
                             <div>
-                                <input readonly="" type="email" name="email" value="mikeplayzmc1@gmail.com"
+                                <input readonly="" type="email" name="email" value="test@email.com"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Username</label>
                             <div>
-                                <input readonly="" type="text" name="username" value="metro"
+                                <input readonly="" type="text" name="username" value="test"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client First Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_first" value="Michael"
+                                <input readonly="" type="text" name="name_first" value="test"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client Last Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_last" value="Carr"
+                                <input readonly="" type="text" name="name_last" value="test"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
@@ -83,13 +83,9 @@
                             <div class="form-group">
                                 <label>Select</label>
                                 <select class="form-control">
-                                    <option>Kiosk 1</option>
-                                    <option>Kiosk 2</option>
-                                    <option>Kiosk 3</option>
-                                    <option>Kiosk 4</option>
-                                    <option>Kiosk 5</option>
-                                    <option>Kiosk 6</option>
-
+                                    @foreach(App\Kiosk::all() as $kiosk)
+                                        <option>$kiosk->name</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
