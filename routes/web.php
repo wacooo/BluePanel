@@ -23,3 +23,7 @@ Route::resource('/kiosks', 'KioskController');
 
 Route::resource('/users', 'UserController');
 
+Route::get('/myaccount', function () {
+    return view('myaccount');
+});
+
