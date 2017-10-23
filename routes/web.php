@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/kiosk', 'KioskController');
-Route::get('/users', function () {
-    return view ('users');
-});
+Route::resource('/kiosks', 'KioskController');
+
+Route::resource('/users', 'UserController');
+
