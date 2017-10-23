@@ -74,6 +74,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Assign Kiosk</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Select</label>
+                                <select class="form-control">
+                                    <option>Kiosk 1</option>
+                                    <option>Kiosk 2</option>
+                                    <option>Kiosk 3</option>
+                                    <option>Kiosk 4</option>
+                                    <option>Kiosk 5</option>
+                                    <option>Kiosk 6</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+
+                            <input type="submit" value="Update" class="btn btn-primary btn-sm">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="box">
