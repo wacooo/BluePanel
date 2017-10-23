@@ -26,28 +26,22 @@
                         <div class="form-group">
                             <label for="email" class="control-label">Email</label>
                             <div>
-                                <input readonly="" type="email" name="email" value="mikeplayzmc1@gmail.com"
+                                <input readonly="" type="email" name="email" value="test"
+                                       class="form-control form-autocomplete-stop">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registered" class="control-label">First Name</label>
+                            <div>
+                                <input readonly="" type="text" name="name_first" value="test"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">Username</label>
+                            <label for="registered" class="control-label">Last Name</label>
                             <div>
-                                <input readonly="" type="text" name="username" value="metro"
-                                       class="form-control form-autocomplete-stop">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registered" class="control-label">Client First Name</label>
-                            <div>
-                                <input readonly="" type="text" name="name_first" value="Michael"
-                                       class="form-control form-autocomplete-stop">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registered" class="control-label">Client Last Name</label>
-                            <div>
-                                <input readonly="" type="text" name="name_last" value="Carr"
+                                <input readonly="" type="text" name="name_last" value="test"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
@@ -78,24 +72,29 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Permissions</h3>
+                        <h3 class="box-title">Assign Kiosk</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="root_admin" class="control-label">Administrator</label>
-                            <div>
-                                <select name="root_admin" class="form-control">
-                                    <option value="0">No</option>
-                                    <option value="1" selected="&quot;selected&quot;">Yes</option>
-                                </select>
-                                <p class="text-muted">
-                                    <small>Setting this to 'Yes' gives a user full administrative access.</small>
-                                </p>
-                            </div>
+                            <label>Select</label>
+                            <select class="form-control">
+                                <option>Kiosk 1</option>
+                                <option>Kiosk 2</option>
+                                <option>Kiosk 3</option>
+                                <option>Kiosk 4</option>
+                                <option>Kiosk 5</option>
+                                <option>Kiosk 6</option>
+
+                            </select>
                         </div>
+                    </div>
+                    <div class="box-footer">
+
+                        <input type="submit" value="Update" class="btn btn-primary btn-sm">
                     </div>
                 </div>
             </div>
+
         </form>
         <div class="col-xs-12">
             <div class="box">
@@ -111,6 +110,7 @@
                             <th>Kiosk Name</th>
                             <th>Room</th>
                             <th>Created at</th>
+                            <th>Remove from kiosk</th>
                             <th style="width:10%;"></th>
                         </tr>
                         </thead>
@@ -123,6 +123,7 @@
                                 <td>{{$kiosk->name}}</td>
                                 <td>{{$kiosk->room}}</td>
                                 <td>{{$kiosk->created_at}}</td>
+                                <td><input type="submit" value="Remove" class="btn btn-danger btn-sm"></td>
                                 <td></td>
 
 
