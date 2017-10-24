@@ -30,7 +30,7 @@
                         <span class="hidden-xs">Guest</span>
                     @endguest
                     @auth
-                        <span class="hidden-xs">{{Auth::user()->name}}</span>
+                        <span class="hidden-xs">{{Auth::user()->username}}</span>
                     @endauth
 
 
@@ -44,7 +44,7 @@
                             <p>Guest</p>
                         @endguest
                         @auth
-                            <span class="hidden-xs">{{Auth::user()->name}}</span>
+                            <span class="hidden-xs">{{Auth::user()->username}}</span>
                         @endauth
                     </li>
 
