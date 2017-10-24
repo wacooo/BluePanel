@@ -38,7 +38,7 @@
             </a>
             <ul class="treeview-menu">
                 @foreach(\App\Kiosk::all() as $kiosk)
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->username}}</a></li>
+                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
                 @endforeach
             </ul>
         </li>
