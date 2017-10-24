@@ -3,7 +3,7 @@
 
 
     <h1>
-        {{$user->name}}
+        {{$user->username}}
         <small>Edit user profile</small>
     </h1>
     <ol class="breadcrumb">
@@ -16,7 +16,7 @@
 @section('content')
 
     <div class="row">
-        <form action="https://panel.dragonsdoom.net/admin/users/view/2" method="post">
+        <form action="" method="post">
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -26,34 +26,34 @@
                         <div class="form-group">
                             <label for="email" class="control-label">Email</label>
                             <div>
-                                <input readonly="" type="email" name="email" value="test@email.com"
+                                <input readonly="" type="email" name="email" value="{{$user->email}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Username</label>
                             <div>
-                                <input readonly="" type="text" name="username" value="test"
+                                <input readonly="" type="text" name="username" value="{{$user->username}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client First Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_first" value="test"
+                                <input readonly="" type="text" name="name_first" value="{{$user->name_first}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client Last Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_last" value="test"
+                                <input readonly="" type="text" name="name_last" value="{{$user->name_last}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
-                        <input type="hidden" name="_token" value="u46gaPkpNplpeMD2LaIQxSCJ2foqxGABKgt4k7Qg">
+                        {{ csrf_field() }}
                         <input type="submit" value="Update User" class="btn btn-primary btn-sm">
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label for="password" class="control-label">Password</label>
                             <div>
-                                <input readonly="" type="password" id="password" name="password"
+                                <input readonly="" type="password"hydbtrsgfgdvtggv id="password" name="password"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
@@ -83,8 +83,11 @@
                             <div class="form-group">
                                 <label>Select</label>
                                 <select class="form-control">
-                                    @foreach(App\Kiosk::all() as $kiosk)
-                                        <option>$kiosk->name</option>
+                                    {{--Get the kiosks that the user doesnt currently have--}}
+                                    @foreach(App\Kiosk::all()->diff($user->kiosks)->all() as $kiosk)
+                                        @if(!in_array($kiosk, $user->kiosks->toArray()))
+                                            <option>{{$kiosk->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
