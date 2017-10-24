@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Kiosk;
 
 class UserController extends Controller
 {
