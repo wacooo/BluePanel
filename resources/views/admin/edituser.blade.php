@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label for="password" class="control-label">Password</label>
                             <div>
-                                <input readonly="" type="password"hydbtrsgfgdvtggv id="password" name="password"
+                                <input readonly="" type="password" id="password" name="password"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>

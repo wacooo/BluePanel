@@ -30,57 +30,19 @@
                         <span class="hidden-xs">Guest</span>
                     @endguest
                     @auth
-                        <span class="hidden-xs">{{Auth::user()->username}}</span>
+                        <span class="hidden-xs">{{ucfirst(Auth::user()->name_first) . " " . ucfirst(Auth::user()->name_last)}}</span>
                     @endauth
 
 
                 </a>
-                <ul class="dropdown-menu">
-                    <!-- User image -->
-                    <li class="user-header">
-                        <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle"
-                             alt="User Image">
-                        @guest
-                            <p>Guest</p>
-                        @endguest
-                        @auth
-                            <span class="hidden-xs">{{Auth::user()->username}}</span>
-                        @endauth
-                    </li>
+            <li><a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
+                   data-original-title="Logout"><i class="fa fa-power-off"></i></a></li>
 
-
-                    <li class="user-footer">
-                        @guest
-                            <div class="row">
-                                <div class="col-xs-4 text-center">
-
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="{{route('login')}}" class="btn btn-default btn-flat">Login</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-
-                                </div>
-                            </div>
-                        @endguest
-                        @auth
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Edit Account</a>
-                            </div>
-
-                            <div class="pull-right">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">{{ csrf_field() }}</form>
-                                <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                   class="btn btn-default btn-flat">Sign out</a>
-
-                            </div>
-                        @endauth
-                    </li>
-                </ul>
-            </li>
-            <!-- Control Sidebar Toggle Button -->
 
         </ul>
+
+        <!-- Control Sidebar Toggle Button -->
+
+
     </div>
 </nav>
