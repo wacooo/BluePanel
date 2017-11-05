@@ -24,7 +24,7 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
-
+<tbody>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
