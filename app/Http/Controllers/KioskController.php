@@ -29,7 +29,7 @@ class KioskController extends Controller
      */
     public function index()
     {
-        return view('admin.kiosklist')->with('kiosks', Auth::user()->kiosks()->get());
+        return view('admin.kiosklist');
     }
 
     /**
