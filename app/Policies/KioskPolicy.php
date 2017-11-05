@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class KioskPolicy
 {
+    public function before($user, $ability)
+    {
+        if ($user->isAdministrator()) {
+            return true;
+        }
+    }
+
     use HandlesAuthorization;
 
     /**
