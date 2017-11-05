@@ -9,15 +9,25 @@
                 <p>Guest</p>
             @endguest
             @auth
-                <p>{{ Auth::user()->name }}</p>
+                <p>{{ucfirst(Auth::user()->name_first) . " " . ucfirst(Auth::user()->name_last)}}</p>
             @endauth
 
         </div>
     </div>
 
-    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-        s
+    @auth
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-ship"></i> <span>My Account</span>
+                    <span class="pull-right-container">
+
+            </span>
+                </a>
+
+            </li>
+        @endauth
 
         <li class="treeview">
             <a href="#">
@@ -40,6 +50,7 @@
                 @foreach(\App\Kiosk::all() as $kiosk)
                     <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
                 @endforeach
+
             </ul>
         </li>
         @auth
@@ -91,7 +102,11 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
+
+
+                        @foreach(\App\Kiosk::all() as $kiosk)
+                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
+                        @endforeach
                     </ul>
                 </li>
             @endif

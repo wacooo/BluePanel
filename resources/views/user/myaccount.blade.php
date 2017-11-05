@@ -117,8 +117,8 @@
                                 </div>
                             </div>
                             <div class="box-footer">
-                                <input type="hidden" name="_token" value="u46gaPkpNplpeMD2LaIQxSCJ2foqxGABKgt4k7Qg">
-                                <input type="hidden" name="do_action" value="email">
+                                {!! csrf_field() !!}
+                                {!! method_field('PATCH') !!}
                                 <input type="submit" class="btn btn-primary btn-sm" value="Update Email Address">
                             </div>
                         </form>
