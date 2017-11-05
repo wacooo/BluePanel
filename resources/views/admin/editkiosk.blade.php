@@ -13,7 +13,7 @@
 
 @endsection
 @section('content')
-    {{$kiosk = \App\Kiosk::findOrFail(1)}}
+
     <div class="row">
         <div class="col-lg-6">
             <div class="box box-primary">

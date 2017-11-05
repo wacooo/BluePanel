@@ -42,6 +42,8 @@ class KioskPolicy
         //
     }
 
+
+
     /**
      * Determine whether the user can update the kiosk.
      *
