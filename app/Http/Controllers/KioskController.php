@@ -69,9 +69,9 @@ class KioskController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Kiosk $kiosk)
     {
-
+        return view('admin.editkiosk')->with('kiosk', $kiosk);
     }
 
     /**
