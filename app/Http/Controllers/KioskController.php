@@ -100,15 +100,18 @@ class KioskController extends Controller
     {
     }
 
-    public function attach(Kiosk $kiosk, User $user)
+    public function attach($kiosk, User $user)
     {
         $user->kiosks()->attach($kiosk);
+        return true;
 
     }
 
-    public function detach(Kiosk $kiosk, User $user)
+    public function detach($kiosk, User $user)
     {
-        $user->kiosks()->attach($kiosk);
+        $user->kiosks()->detach($kiosk);
+        return $kiosk . $user->id;
+
 
     }
 

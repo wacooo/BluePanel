@@ -55,6 +55,7 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
+
     public function edit(User $user)
     {
         return view('admin.edituser')->with(
@@ -69,9 +70,9 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, $data)
     {
-
+        return print_r($data);
     }
 
     /**
