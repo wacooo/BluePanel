@@ -110,13 +110,16 @@
 @push('scripts')
     <script>
     function removeUserFromKiosk(kioskid, userid){
+        var url = "/kiosks/" + kioskid + "/detach/" + userid;
         $.ajax({
-            url:"/kiosk/" + kioskid + "/detach/" + userid + "/",
+            url:url,
             type:"DELETE",
             success: function(result){
                 location.reload();
             }
         })
+        console.log(url);
+
 
     }
     </script>
