@@ -29,7 +29,7 @@ class KioskController extends Controller
      */
     public function index()
     {
-        return view('index.kiosk')->with('kiosks', Auth::user()->kiosks()->get());
+        return view('admin.kiosklist')->with('kiosks', Auth::user()->kiosks()->get());
     }
 
     /**
@@ -100,15 +100,15 @@ class KioskController extends Controller
     {
     }
 
-    public function attach(Request $request,Kiosk $kiosk)
+    public function attach(Kiosk $kiosk, User $user)
     {
-        User::findOrFail($request['user_id'])->attach($kiosk);
+        $user->attach($kiosk);
 
     }
 
-    public function detach(Request $request,Kiosk $kiosk)
+    public function detach(Kiosk $kiosk, User $user)
     {
-        User::findOrFail($request['user_id'])->attach($kiosk);
+        $user->attach($kiosk);
 
     }
 
