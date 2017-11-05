@@ -96,6 +96,22 @@ class KioskController extends Controller
 
     }
 
+    public function admin_index()
+    {
+    }
+
+    public function attach(Request $request,Kiosk $kiosk)
+    {
+        User::findOrFail($request['user_id'])->attach($kiosk);
+
+    }
+
+    public function detach(Request $request,Kiosk $kiosk)
+    {
+        User::findOrFail($request['user_id'])->attach($kiosk);
+
+    }
+
 }
 
 ?>

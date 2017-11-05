@@ -11,19 +11,25 @@
 |
 */
 
+Route::get('myaccount', function () {
+    return view('myaccount');
+});
 Route::get('/', function () {
     return redirect('/home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
 
-Route::resource('/kiosks', 'KioskController');
 
-Route::resource('/users', 'UserController');
+Route::delete('kiosks/{id}/detach/{user}', 'KioskController@detach');
+Route::post('kiosks/{id}/attach/{user}', 'KioskController@attach');
 
-Route::get('/myaccount', function () {
-    return view('myaccount');
-});
+Route::resource('kiosks', 'KioskController');
 
+
+Route::resource('users', 'UserController');
+
+//Admin routes
+Route::get('/admin/kiosks', 'KiosksController@admin_index');
