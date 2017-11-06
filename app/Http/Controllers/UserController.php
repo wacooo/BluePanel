@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users')->with('users', $users);
+        return view('admin.users');
     }
 
     /**
@@ -70,7 +70,7 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id, $data)
+    public function update(User $user, $data)
     {
         return print_r($data);
     }
@@ -81,9 +81,9 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-
+            $user->delete();
     }
 
 }
