@@ -11,3 +11,6 @@
 
 <script src="{{asset('vendor/adminlte/select2/dist/js/select2.full.js')}}"></script>
 
+
+<!-- SweetAlert -->
+<script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>

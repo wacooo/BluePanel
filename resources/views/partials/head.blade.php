@@ -25,5 +25,7 @@
 
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+<!-- CSRF -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- SweetAlert-->
+<link rel="stylesheet" href="{{asset('vendor/sweetalert/sweetalert.min.css')}}">
