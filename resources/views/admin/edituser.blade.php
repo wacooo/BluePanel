@@ -146,10 +146,10 @@
                         deleted.</p>
                 </div>
                 <div class="box-footer">
-                    <form action="https://panel.dragonsdoom.net/admin/users/view/2" method="POST">
-                        <input type="hidden" name="_token" value="u46gaPkpNplpeMD2LaIQxSCJ2foqxGABKgt4k7Qg">
+                    <form action="/users/{{$user->id}}" method="POST">
+                        {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
-                        <input id="delete" type="submit" class="btn btn-sm btn-danger pull-right" disabled=""
+                        <input id="delete" type="submit" class="btn btn-sm btn-danger pull-right"
                                value="Delete User">
                     </form>
                 </div>
