@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('myaccount', function () {
-    return view('user.myaccount');
-});
-
 Route::get('/', function () {
     return redirect('/home');
 });
