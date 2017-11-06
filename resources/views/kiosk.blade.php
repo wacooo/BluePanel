@@ -6,15 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!--<link href="CSS/bootstrap.css" rel="stylesheet">-->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{asset('css/alertify.css')}}">
+    <link rel="stylesheet" href="{{ asset('/vendor/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/sweetalert/sweetalert.min.css')}}">
     <title>LibTrackPro</title>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/mask.js') }}"></script>
-    <script src="{{ asset('js/alertify.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/vendor/js/jquery.js') }}"></script>
+    <script src="{{ asset('/vendor/js/mask.js') }}"></script>
+    <script src="{{ asset('/vendor/js/bootstrap.min.js') }}"></script>
     <style>
         body {
             font-family: Helvetica;
@@ -132,7 +129,7 @@
             });
         }
     </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>
 <body>
 <div class="text-center">
