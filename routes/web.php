@@ -12,8 +12,9 @@
 */
 
 Route::get('myaccount', function () {
-    return view('myaccount');
+    return view('user.myaccount');
 });
+
 Route::get('/', function () {
     return redirect('/home');
 });

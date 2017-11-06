@@ -74,30 +74,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Assign Kiosk</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Select</label>
-                                <select class="form-control">
-                                    {{--Get the kiosks that the user doesnt currently have--}}
-                                    @foreach(App\Kiosk::all()->diff($user->kiosks)->all() as $kiosk)
-                                        @if(!in_array($kiosk, $user->kiosks->toArray()))
-                                            <option>{{$kiosk->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="box-footer">
-
-                            <input type="submit" value="Update" class="btn btn-primary btn-sm">
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-6">
                 <div class="box">
