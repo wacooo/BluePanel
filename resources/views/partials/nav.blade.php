@@ -16,16 +16,15 @@
     </div>
 
     <ul class="sidebar-menu" data-widget="tree">
-    @auth
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-ship"></i> <span>My Account</span>
-                    <span class="pull-right-container">
+        <li class="header">MAIN NAVIGATION</li>
+        @auth
+            <li class="{{ Request::is('myaccount') ? 'active' : '' }}">
 
+            <a href="myaccount">
+                <i class="fa fa-th"></i> <span>My Account</span>
+                <span class="pull-right-container">
             </span>
-                </a>
-
+            </a>
             </li>
         @endauth
 
@@ -93,21 +92,6 @@
                     </a>
 
 
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-desktop"></i> <span>Kiosks</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-
-                        @foreach(\App\Kiosk::all() as $kiosk)
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
-                        @endforeach
-                    </ul>
                 </li>
             @endif
         @endauth
