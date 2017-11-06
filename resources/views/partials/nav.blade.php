@@ -2,7 +2,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+            <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( $user->email ) ) )}}?s=100" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
             @guest
@@ -17,16 +17,6 @@
 
     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        @auth
-            <li class="{{ Request::is('myaccount') ? 'active' : '' }}">
-
-            <a href="myaccount">
-                <i class="fa fa-th"></i> <span>My Account</span>
-                <span class="pull-right-container">
-            </span>
-            </a>
-            </li>
-        @endauth
 
         <li class="treeview">
             <a href="#">
@@ -63,7 +53,7 @@
                 </a>
                 <ul class="treeview-menu">
                     @foreach(Auth::user()->kiosks as $kiosk)
-                        <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
+                        <li><a href="/kiosks/{{$kiosk->id}}"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
                     @endforeach
                 </ul>
 
@@ -75,23 +65,21 @@
                 <li class="header">Administrative Tasks</li>
 
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-database"></i> <span>Kiosk Management</span>
+                <li class="{{ Request::is('kiosks') ? 'active' : '' }}">
+
+                    <a href="kiosks">
+                        <i class="fa fa-database"></i> <span>Manage Kiosks</span>
                         <span class="pull-right-container">
-
-            </span>
+                        </span>
                     </a>
-
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-user"></i> <span>User Management</span>
+                <li class="{{ Request::is('users') ? 'active' : '' }}">
+
+                    <a href="users">
+                        <i class="fa fa-users"></i> <span>Manage Users</span>
                         <span class="pull-right-container">
-            </span>
+                        </span>
                     </a>
-
-
                 </li>
             @endif
         @endauth
