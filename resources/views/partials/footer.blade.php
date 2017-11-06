@@ -8,3 +8,6 @@
 <script src="{{asset('vendor/adminlte/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('vendor/adminlte/js/adminlte.min.js')}}"></script>
+
+<script src="{{asset('vendor/adminlte/select2/dist/js/select2.full.js')}}"></script>
+

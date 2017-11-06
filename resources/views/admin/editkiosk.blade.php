@@ -12,6 +12,30 @@
     </ol>
 
 @endsection
+@push('scripts')
+    <script>
+        function removeUserFromKiosk(kioskid, userid){
+            var url = "/kiosks/" + kioskid + "/detach/" + userid;
+            $.ajax({
+                url:url,
+                type:"DELETE",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                success: function(result){
+                    location.reload();
+                }
+            });
+            console.log(url);
+
+
+        }
+
+
+
+    </script>
+    <script>
+        $('.js-example-basic-multiple').select2();
+    </script>
+@endpush
 @section('content')
 
     <div class="row">
@@ -83,45 +107,62 @@
         </div>
 
 
+
+
+<div class="col-md-6">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add User</h3>
+
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Minimal</label><br>
+                        <select class="js-example-basic-multiple" name="states[]" style="width: 100%;" multiple="multiple">
+                            @foreach(\App\User::all() as $user)
+                                <option>{{ucfirst($user->name_first) . " " . ucfirst($user->name_last)}}</option>
+                                @endforeach
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-block btn-success">Add User to Kiosk</button>
+
+                    <!-- /.form-group -->
+
+                    <!-- /.form-group -->
+                </div>
+
+
+
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+ 
+    </div>
+</div>
         <div class="col-lg-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Delete User</h3>
+                    <h3 class="box-title">Delete Kiosk</h3>
                 </div>
                 <div class="box-body">
-                    <p class="no-margin">There must be no servers associated with this account in order for it to be
-                        deleted.</p>
+                    <p class="no-margin">This action can not be undone. All users will loose access to this kiosk.</p>
                 </div>
                 <div class="box-footer">
-                    <form action="https://panel.dragonsdoom.net/admin/users/view/1" method="POST">
-                        <input type="hidden" name="_token" value="rPxCLNjsnsvq89stFyWc36X2aZbzLS5JFQETxwM9">
+                    <form action="{{'/kiosks/'.$kiosk->id}}" method="POST">
+                        {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
                         <input id="delete" type="submit" class="btn btn-sm btn-danger pull-right" 1=""
-                               value="Delete User">
+                               value="Delete Kiosk">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-
-
 @endsection
-@push('scripts')
-    <script>
-    function removeUserFromKiosk(kioskid, userid){
-        var url = "/kiosks/" + kioskid + "/detach/" + userid;
-        $.ajax({
-            url:url,
-            type:"DELETE",
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function(result){
-                location.reload();
-            }
-        });
-        console.log(url);
-
-
-    }
-    </script>
-@endpush
