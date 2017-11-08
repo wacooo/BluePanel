@@ -25,9 +25,13 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100" class="user-image" alt="User Image">
-
+                    @auth
+                            <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100" class="user-image" alt="User Image">
+                    @endauth
                     @guest
+                            <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                    @endguest
+                        @guest
                         <span class="hidden-xs">Guest</span>
                     @endguest
                     @auth

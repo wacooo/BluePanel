@@ -2,7 +2,12 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
+            @auth
             <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100" class="img-circle" alt="User Image">
+            @endauth
+            @guest
+                    <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                @endguest
         </div>
         <div class="pull-left info">
             @guest
