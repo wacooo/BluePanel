@@ -18,7 +18,7 @@ class KioskController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin')->except(['index', 'show']);
-        $this->authorizeResource(\App\Kiosk::class);
+        $this->authorizeResource(Kiosk::class);
 
     }
 
@@ -49,7 +49,8 @@ class KioskController extends Controller
      */
     public function store(Request $request)
     {
-
+        //TODO - verify and sanitize user input
+        Kiosk::create($request->all());
     }
 
     /**
@@ -80,8 +81,10 @@ class KioskController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, Kiosk $kiosk)
     {
+    //TODO - verify and sanitize user input
+        $kiosk->update($request->all());
 
     }
 
@@ -91,28 +94,36 @@ class KioskController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Kiosk $kiosk)
     {
-
+        $kiosk->delete();
     }
 
-    public function admin_index()
-    {
-    }
 
+    /**
+     * Assign a user to the selected kiosk
+     *
+     * @param $kiosk
+     * @param User $user
+     * @return bool
+     */
     public function attach($kiosk, User $user)
     {
+        //TODO - verify and sanitize user input
         $user->kiosks()->attach($kiosk);
-        return true;
-
     }
 
+    /**
+     * Delete a user from the selected kiosk
+     *
+     * @param $kiosk
+     * @param User $user
+     * @return bool
+     */
     public function detach($kiosk, User $user)
     {
+        //TODO - verify and sanitize user input
         $user->kiosks()->detach($kiosk);
-        return $kiosk . $user->id;
-
-
     }
 
 }
