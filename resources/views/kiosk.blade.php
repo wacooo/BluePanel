@@ -34,18 +34,18 @@
         }
         
     </style>
-
+<!-- TODO: Fix Cameron's horrible skidded code from stackoverflow -->
     <script type="text/javascript">
         $(document).ready(function () {
             $("#txtboxToFilter").keydown(function (e) {
                 // Allow: backspace, delete, tab, escape, enter and .
                 if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
                     // Allow: Ctrl/cmd+A
-                    (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
                     // Allow: Ctrl/cmd+C
-                    (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
                     // Allow: Ctrl/cmd+X
-                    (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
                     // Allow: home, end, left, right
                     (e.keyCode >= 35 && e.keyCode <= 39)) {
                     // let it happen, don't do anything
@@ -133,7 +133,7 @@
 <div class="text-center">
     <img style="margin-top: 10vh; margin-bottom:3vh;" src="{{asset('img/14.png')}}" alt="HB Beal" height="400vh"><br>
     <h2 class="text-center">{{$kiosk->name}}</h2>
-    <input type="text" style="text-align: center" id="input" onkeydown="if (event.keyCode == 13)
+    <input type="text" style="text-align: center" id="input" onkeydown="if (event.keyCode === 13)
                         document.getElementById('button').click()" autofocus><br>
     <button type="button" id="button">Sign in</button>
 
