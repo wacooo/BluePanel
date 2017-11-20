@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class KioskStudent extends Model 
 {
 
-    protected $table = 'kiosk_students';
+    protected $table = 'kiosk_student';
     public $timestamps = true;
 
     public function student()

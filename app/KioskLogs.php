@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class KioskLogs extends Model 
 {
 
-    protected $table = 'kiosk_logs';
+    protected $table = 'kiosk_log';
     public $timestamps = true;
 
     public function kiosk()
