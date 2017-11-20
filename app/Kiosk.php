@@ -8,6 +8,7 @@ class Kiosk extends Model
 {
 
     protected $table = 'kiosks';
+    protected $fillable = ['room', 'name'];
     public $timestamps = true;
 
     public function students()
