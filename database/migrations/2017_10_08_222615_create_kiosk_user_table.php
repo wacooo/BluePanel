@@ -3,11 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateKioskUsersTable extends Migration {
+class CreateKioskUserTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('kiosk_users', function(Blueprint $table) {
+		Schema::create('kiosk_user', function(Blueprint $table) {
 			$table->increments('id')->unsigned();
 			$table->timestamps();
 			$table->integer('user_id')->unsigned();
@@ -17,6 +17,6 @@ class CreateKioskUsersTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('kiosk_users');
+		Schema::drop('kiosk_user');
 	}
 }
