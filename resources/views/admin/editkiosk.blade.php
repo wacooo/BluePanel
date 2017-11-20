@@ -12,29 +12,48 @@
     </ol>
 
 @endsection
+
 @push('scripts')
     <script>
-        function removeUserFromKiosk(kioskid, userid){
-            var url = "/kiosks/" + kioskid + "/detach/" + userid;
+        function removeUserFromKiosk(userid) {
+
+            var url = "/kiosks/{{$kiosk->id}}/detach/" + userid;
             $.ajax({
-                url:url,
-                type:"DELETE",
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                success: function(result){
+                url: url,
+                type: "DELETE",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (result) {
                     location.reload();
                 }
             });
-            console.log(url);
-
-
         }
 
+        function addUserToKiosk() {
+            var userArray = $( "#addUserSelector" ).val();
+            var i = 0;
+            userArray.forEach(function (val) {
+                i++;
+                var url = "/kiosks/{{$kiosk->id}}/attach/" + val;
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function() {
+                        if(i = userArray.length){
+                            location.reload();
+                        }
+                    }
+                });
+
+            });
+        }
 
 
     </script>
     <script>
-        $('.js-example-basic-multiple').select2();
+        var addUserBox = $('.user-add-box').select2();
     </script>
+
 @endpush
 @section('content')
 
@@ -85,20 +104,23 @@
                             <th>Email</th>
                             <th></th>
                         </tr>
-                        <tr>
                             @foreach($kiosk->users as $user)
+                                <tr>
+
                                 <td><code>{{$user->id}}</code></td>
                                 <td>{{$user->name_first}}</td>
                                 <td>{{$user->name_last}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>
-                                    <button onclick="removeUserFromKiosk({{$kiosk->id}}, {{$user->id}})" class="btn btn-xs btn-danger"><i
+                                    <button onclick="removeUserFromKiosk({{$user->id}})"
+                                            class="btn btn-xs btn-danger"><i
                                                 class="fa fa-trash-o"></i> Revoke
                                     </button>
                                 </td>
+                                </tr>
+
                             @endforeach
 
-                        </tr>
 
                         </tbody>
                     </table>
@@ -107,44 +129,42 @@
         </div>
 
 
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add User</h3>
 
 
-<div class="col-md-6">
-    <div class="box box-default">
-        <div class="box-header with-border">
-            <h3 class="box-title">Add User</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Select a user and click add</label><br>
+                                <select class="user-add-box" style="width: 100%;" id="addUserSelector" multiple="multiple">
+
+                                    @foreach(\App\User::all() as $user)
+                                        <option value="{{$user->id}}">{{ucfirst($user->name_first) . " " . ucfirst($user->name_last)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-block btn-success" onClick="addUserToKiosk()">Add User to Kiosk</button>
+
+                            <!-- /.form-group -->
+
+                            <!-- /.form-group -->
+                        </div>
 
 
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Minimal</label><br>
-                        <select class="js-example-basic-multiple" name="states[]" style="width: 100%;" multiple="multiple">
-                            @foreach(\App\User::all() as $user)
-                                <option>{{ucfirst($user->name_first) . " " . ucfirst($user->name_last)}}</option>
-                                @endforeach
-                        </select>
+                        <!-- /.col -->
                     </div>
-                    <button type="button" class="btn btn-block btn-success">Add User to Kiosk</button>
-
-                    <!-- /.form-group -->
-
-                    <!-- /.form-group -->
+                    <!-- /.row -->
                 </div>
 
-
-
-
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
- 
-    </div>
-</div>
+
         <div class="col-lg-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
