@@ -112,8 +112,14 @@ class KioskController extends Controller
     public function attach($kiosk, User $user)
     {
         //TODO - verify and sanitize user input
-        $user->kiosks()->attach($kiosk);
-        return response()->json(['status'=>'ok']);
+
+        if (! $user->kiosks->contains($kiosk)) {
+            $user->kiosks()->attach($kiosk);
+            return response()->json(['status'=>'ok']);
+        }else{
+            return response()->json(['status'=>'exists']);
+        }
+
     }
 
     /**
