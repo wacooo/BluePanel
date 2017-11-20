@@ -8,12 +8,12 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('kiosk_user', function(Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('kiosk_user', function(Blueprint $table) {
 			$table->foreign('kiosk_id')->references('id')->on('kiosks')
 						->onDelete('cascade')
 						->onUpdate('cascade');
@@ -28,12 +28,12 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('kiosk_logs', function(Blueprint $table) {
+		Schema::table('kiosk_log', function(Blueprint $table) {
 			$table->foreign('kiosk_id')->references('id')->on('kiosks')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
-		Schema::table('kiosk_logs', function(Blueprint $table) {
+		Schema::table('kiosk_log', function(Blueprint $table) {
 			$table->foreign('student_id')->references('id')->on('students')
 						->onDelete('cascade')
 						->onUpdate('cascade');
@@ -42,22 +42,22 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('kiosk_user', function(Blueprint $table) {
 			$table->dropForeign('kiosk_users_user_id_foreign');
 		});
-		Schema::table('kiosk_users', function(Blueprint $table) {
+		Schema::table('kiosk_user', function(Blueprint $table) {
 			$table->dropForeign('kiosk_users_kiosk_id_foreign');
 		});
-		Schema::table('kiosk_students', function(Blueprint $table) {
+		Schema::table('kiosk_student', function(Blueprint $table) {
 			$table->dropForeign('kiosk_students_student_id_foreign');
 		});
-		Schema::table('kiosk_students', function(Blueprint $table) {
+		Schema::table('kiosk_student', function(Blueprint $table) {
 			$table->dropForeign('kiosk_students_kiosk_id_foreign');
 		});
-		Schema::table('kiosk_logs', function(Blueprint $table) {
+		Schema::table('kiosk_log', function(Blueprint $table) {
 			$table->dropForeign('kiosk_logs_kiosk_id_foreign');
 		});
-		Schema::table('kiosk_logs', function(Blueprint $table) {
+		Schema::table('kiosk_log', function(Blueprint $table) {
 			$table->dropForeign('kiosk_logs_student_id_foreign');
 		});
 	}
