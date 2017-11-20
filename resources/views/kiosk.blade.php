@@ -71,30 +71,28 @@
                 $('#input').focus();
                 $.ajax({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                        'REQ-TYPE':'toggle'
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    type: "UPDATE",
+                    type: "POST",
                     async: true,
-                    url: '/kiosk/{{$kiosk->ID}}',
-                    data: JSON.stringify({'id': inputvalue}),
+                    url: '/kiosks/{{$kiosk->id}}/togglestudent/' + inputvalue,
                     dataType: "json",
                     contentType: "application/json",
                     success: function (msg) {
                         console.log(msg);
-                        console.log(JSON.stringify(msg));
-                        if(msg.code == "in"){
+                        console.log(JSON.stringify(msg.student));
+                        if(msg.status === "attached"){
                             signin(msg.student);
                         }
-                        if(msg.code == "out"){
+                        else if(msg.status === "detached"){
                             signout(msg.student);
                         }
-                        if(msg.code == "error"){
+                        else{
                             errormsg();
                         }
                     },
                     error: function (err) {
-                        alert(err.responseText)
+                        errormsg();
                     }
                 });
             });
@@ -103,8 +101,8 @@
     <script>
         function signin(student) {
             swal({
-                title: "Welcone " + student.First + " " + student.Last,
-                text: "You were signed into the library.",
+                title: "Welcome " + student['first'] + " " + student['last'],
+                text: "You were signed into room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
                 timer:"5000"
@@ -112,8 +110,8 @@
         }
         function signout(student) {
             swal({
-                title: "Goodbye " + student.First + " " + student.Last,
-                text: "You were signed out of the library.",
+                title: "Goodbye " + student['first'] + " " + student['last'],
+                text: "You were signed out of room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
                 timer:"5000"

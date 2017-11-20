@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\KioskStudent;
+use App\Student;
 use App\User;
 use App\Kiosk;
 use Illuminate\Http\Request;
@@ -111,6 +113,7 @@ class KioskController extends Controller
     {
         //TODO - verify and sanitize user input
         $user->kiosks()->attach($kiosk);
+        return response()->json(['status'=>'ok']);
     }
 
     /**
@@ -124,6 +127,22 @@ class KioskController extends Controller
     {
         //TODO - verify and sanitize user input
         $user->kiosks()->detach($kiosk);
+        return response()->json(['status'=>'ok']);
+    }
+
+    public function toggleStudent($kiosk, Student $student)
+    {
+        //TODO - verify and sanitize user input
+        //TODO - Log users into the kiosk_logs table
+        $present = $student->kiosks->contains($kiosk);
+        if($present){
+            $student->kiosks()->detach($kiosk);
+            return response()->json(['status'=>'detached', 'student'=>$student->toArray()]);
+        }
+        else{
+            $student->kiosks()->attach($kiosk);
+            return response()->json(['status'=>'attached', 'student'=>$student->toArray()]);
+        }
     }
 
 }

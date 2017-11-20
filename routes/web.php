@@ -22,7 +22,7 @@ Route::get('home', 'HomeController@index')->name('home');
 
 Route::delete('kiosks/{id}/detach/{user}', 'KioskController@detach');
 Route::post('kiosks/{id}/attach/{user}', 'KioskController@attach');
-
+Route::post('kiosks/{id}/togglestudent/{student}', 'KioskController@toggleStudent');
 Route::resource('kiosks', 'KioskController');
 
 
