@@ -100,6 +100,7 @@ class KioskController extends Controller
     public function destroy(Kiosk $kiosk)
     {
         $kiosk->delete();
+        return redirect()->action('KioskController@index');
     }
 
 
