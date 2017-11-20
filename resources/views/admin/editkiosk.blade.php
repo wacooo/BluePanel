@@ -29,7 +29,7 @@
         }
 
         function addUserToKiosk() {
-            var userArray = $( "#addUserSelector" ).val();
+            var userArray = $("#addUserSelector").val();
             var i = 0;
             userArray.forEach(function (val) {
                 i++;
@@ -38,8 +38,8 @@
                     url: url,
                     type: "POST",
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    success: function() {
-                        if(i = userArray.length){
+                    success: function () {
+                        if (i = userArray.length) {
                             location.reload();
                         }
                     }
@@ -65,23 +65,24 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" lpformnum="1">
+                <form role="form" action="/kiosks/{{$kiosk->id}}" method="post">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">Room Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Room Name"
+                            <input type="text" class="form-control" name="name" placeholder="Room Name"
                                    value="{{$kiosk->name}}" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="room">Room Number</label>
-                            <input type="text" class="form-control" id="room" placeholder="Room Number"
+                            <input type="text" class="form-control" name="room" placeholder="Room Number"
                                    value="{{$kiosk->room}}" autocomplete="off">
                         </div>
-
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="put" />
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -104,8 +105,8 @@
                             <th>Email</th>
                             <th></th>
                         </tr>
-                            @foreach($kiosk->users as $user)
-                                <tr>
+                        @foreach($kiosk->users as $user)
+                            <tr>
 
                                 <td><code>{{$user->id}}</code></td>
                                 <td>{{$user->name_first}}</td>
@@ -117,9 +118,9 @@
                                                 class="fa fa-trash-o"></i> Revoke
                                     </button>
                                 </td>
-                                </tr>
+                            </tr>
 
-                            @endforeach
+                        @endforeach
 
 
                         </tbody>
@@ -142,14 +143,17 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Select a user and click add</label><br>
-                                <select class="user-add-box" style="width: 100%;" id="addUserSelector" multiple="multiple">
+                                <select class="user-add-box" style="width: 100%;" id="addUserSelector"
+                                        multiple="multiple">
 
                                     @foreach(\App\User::all() as $user)
                                         <option value="{{$user->id}}">{{ucfirst($user->name_first) . " " . ucfirst($user->name_last)}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="button" class="btn btn-block btn-success" onClick="addUserToKiosk()">Add User to Kiosk</button>
+                            <button type="button" class="btn btn-block btn-success" onClick="addUserToKiosk()">Add User
+                                to Kiosk
+                            </button>
 
                             <!-- /.form-group -->
 

@@ -86,7 +86,8 @@ class KioskController extends Controller
     public function update(Request $request, Kiosk $kiosk)
     {
     //TODO - verify and sanitize user input
-        $kiosk->update($request->all());
+        $kiosk->update($request->only(['name','room']));
+        return view('admin.editkiosk')->with('kiosk', $kiosk);
 
     }
 
