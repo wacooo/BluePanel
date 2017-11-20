@@ -17,7 +17,7 @@ class Student extends Model
 
     public function kiosks()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Kiosk');
     }
 
 }
