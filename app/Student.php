@@ -12,12 +12,14 @@ class Student extends Model
 
     public function logs()
     {
-        return $this->hasMany('App\KioskLogs');
+        return $this->belongsToMany('App\Kiosk', 'kiosk_logs', 'student_id', 'kiosk_id')
+            ->withTimestamps()
+            ->withPivot('type');
     }
 
     public function kiosks()
     {
-        return $this->belongsToMany('App\Kiosk');
+        return $this->belongsToMany('App\Kiosk')->withTimestamps();
     }
 
 }

@@ -3,11 +3,12 @@
     <div class="user-panel">
         <div class="pull-left image">
             @auth
-            <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100" class="img-circle" alt="User Image">
+                <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100"
+                     class="img-circle" alt="User Image">
             @endauth
             @guest
-                    <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                @endguest
+                <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+            @endguest
         </div>
         <div class="pull-left info">
             @guest
@@ -42,7 +43,9 @@
             </a>
             <ul class="treeview-menu">
                 @foreach(\App\Kiosk::all() as $kiosk)
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
+                    <li>
+                        <a href="/kiosks/{{$kiosk->id}}/logs"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a>
+                    </li>
                 @endforeach
 
             </ul>
@@ -58,7 +61,12 @@
                 </a>
                 <ul class="treeview-menu">
                     @foreach(Auth::user()->kiosks as $kiosk)
-                        <li><a href="/kiosks/{{$kiosk->id}}"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a></li>
+                        <li>
+                            <a href="{{ url('kiosks', [$kiosk->id]) }}">
+                                <i class="fa fa-circle-o"></i>
+                                {{$kiosk->name}}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
 

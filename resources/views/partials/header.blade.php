@@ -26,12 +26,14 @@
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     @auth
-                            <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100" class="user-image" alt="User Image">
+                        <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100"
+                             class="user-image" alt="User Image">
                     @endauth
                     @guest
-                            <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                        <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="user-image"
+                             alt="User Image">
                     @endguest
-                        @guest
+                    @guest
                         <span class="hidden-xs">Guest</span>
                     @endguest
                     @auth
@@ -40,14 +42,16 @@
 
 
                 </a>
-            <li><a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
-                   data-original-title="Logout"><i class="fa fa-power-off"></i></a></li>
-
-
+            <li>
+                <a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
+                   data-original-title="Logout"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                            class="fa fa-power-off"></i></a></li>
         </ul>
 
         <!-- Control Sidebar Toggle Button -->
 
 
     </div>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 </nav>

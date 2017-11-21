@@ -35,6 +35,7 @@
         
     </style>
 <!-- TODO: Fix Cameron's horrible skidded code from stackoverflow -->
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#txtboxToFilter").keydown(function (e) {
@@ -67,6 +68,7 @@
         $(document).ready(function () {
             $('#button').click(function (e) {
                 var inputvalue =  parseInt($("#input").val().replace(/-/g, ""));
+                console.log(inputvalue);
                 $("#input").val('');
                 $('#input').focus();
                 $.ajax({
@@ -92,6 +94,7 @@
                         }
                     },
                     error: function (err) {
+                        console.log(err)
                         errormsg();
                     }
                 });

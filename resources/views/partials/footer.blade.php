@@ -14,3 +14,7 @@
 
 <!-- SweetAlert -->
 <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+
+<!-- DataTables -->
+<script src="{{asset('vendor/adminlte/datatables.net/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendor/adminlte/datatables.net-bs/js/dataTables.bootstrap.js')}}"></script>
