@@ -80,7 +80,7 @@
 
                 <li class="{{ Request::is('kiosks') ? 'active' : '' }}">
 
-                    <a href="kiosks">
+                    <a href="/kiosks">
                         <i class="fa fa-database"></i> <span>Manage Kiosks</span>
                         <span class="pull-right-container">
                         </span>
