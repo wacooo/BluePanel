@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -50,7 +52,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editinSSg the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int $id
      * @return Response
@@ -58,9 +60,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.edituser')->with(
-            'user', $user::with('kiosks'
-        )->first());
+        return view('admin.edituser')->with('user', $user);
 
     }
 
@@ -70,9 +70,20 @@ class UserController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update(User $user, $data)
+    public function update(Request $request, User $user)
     {
-        return print_r($data);
+        //TODO ADD VERIFICATION
+
+        //If there is a password change request
+        $password = $request->input('password');
+        if(isset($password)){
+            $user->update($request->except('password'));
+            $user->password = Hash::make($password);
+            $user->save();
+        }else {
+            $user->update($request->except('password'));
+        }
+        return view('admin.edituser')->with('user', $user);
     }
 
     /**

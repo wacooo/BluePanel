@@ -16,7 +16,7 @@
 @section('content')
 
     <div class="row">
-        <form action="" method="post">
+        <form action="/users/{{$user->id}}" method="post">
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
@@ -26,34 +26,35 @@
                         <div class="form-group">
                             <label for="email" class="control-label">Email</label>
                             <div>
-                                <input readonly="" type="email" name="email" value="{{$user->email}}"
+                                <input type="email" name="email" value="{{$user->email}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Username</label>
                             <div>
-                                <input readonly="" type="text" name="username" value="{{$user->username}}"
+                                <input type="text" name="username" value="{{$user->username}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client First Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_first" value="{{$user->name_first}}"
+                                <input type="text" name="name_first" value="{{$user->name_first}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="registered" class="control-label">Client Last Name</label>
                             <div>
-                                <input readonly="" type="text" name="name_last" value="{{$user->name_last}}"
+                                <input type="text" name="name_last" value="{{$user->name_last}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
                         {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="put" />
                         <input type="submit" value="Update User" class="btn btn-primary btn-sm">
                     </div>
                 </div>
@@ -68,7 +69,7 @@
                         <div class="form-group">
                             <label for="password" class="control-label">Password</label>
                             <div>
-                                <input readonly="" type="password" id="password" name="password"
+                                <input type="password" id="password" name="password"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
@@ -84,9 +85,14 @@
                         <div class="form-group">
                             <label for="root_admin" class="control-label">Administrator</label>
                             <div>
-                                <select name="root_admin" class="form-control">
+                                <select name="isadmin" class="form-control">
                                     <option value="0">No</option>
-                                    <option value="1" selected="&quot;selected&quot;">Yes</option>
+                                    @if($user->isAdministrator())
+                                        <option value="1" selected="">Yes</option>
+
+                                    @else
+                                        <option value="1">Yes</option>
+                                    @endif
                                 </select>
                                 <p class="text-muted">
                                     <small>Setting this to 'Yes' gives a user full administrative access.</small>
