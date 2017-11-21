@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\KioskStudent;
 use App\Student;
 use App\User;
 use App\Kiosk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class KioskController extends Controller
 {
@@ -19,7 +19,7 @@ class KioskController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->except(['index', 'show']);
+        $this->middleware('admin')->except(['show']);
         $this->authorizeResource(Kiosk::class);
 
     }
@@ -32,6 +32,30 @@ class KioskController extends Controller
     public function index()
     {
         return view('admin.kiosklist');
+    }
+
+    /**
+     * Show the logs of a kiosk
+     *
+     * @param Request $request
+     * @param Kiosk $kiosk
+     * @return Response
+     */
+    public function logs(Request $request, $kiosk)
+    {
+        $kiosk = Kiosk::findOrFail($kiosk);
+
+        if($request->ajax())
+        {
+            //return datatables($kiosk->logs)->toJson();
+            //return datatables()->collection($kiosk->logs)->toJson();
+            return datatables()->of($kiosk->logs)->make(true);
+
+        }
+        else
+        {
+            return view('kiosklogs')->with('kiosk', $kiosk);
+        }
     }
 
     /**
@@ -138,17 +162,31 @@ class KioskController extends Controller
         return response()->json(['status'=>'ok']);
     }
 
-    public function toggleStudent($kiosk, Student $student)
+    public function toggleStudent($kioskid, $studentid)
     {
+        $student = Student::findOrFail($studentid);
+        $kiosk = Kiosk::findOrFail($kioskid);
+
         //TODO - verify and sanitize user input
         //TODO - Log users into the kiosk_logs table
-        $present = $student->kiosks->contains($kiosk);
+        $present = $student->kiosks->contains($kiosk->id);
         if($present){
-            $student->kiosks()->detach($kiosk);
+            //Add entry to logs
+            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign In']);
+
+            //log the student in
+            $student->kiosks()->detach($kiosk->id);
+
+            //Return info for AJAX to display on the kiosk
             return response()->json(['status'=>'detached', 'student'=>$student->toArray()]);
         }
         else{
-            $student->kiosks()->attach($kiosk);
+            //Add entry to logs
+            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign Out']);
+
+            //log the student in
+            $student->kiosks()->attach($kiosk->id);
+
             return response()->json(['status'=>'attached', 'student'=>$student->toArray()]);
         }
     }
