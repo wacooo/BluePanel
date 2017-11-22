@@ -11,11 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return redirect('/home');
 });
-Route::get('/test', function (){
-   return view('kiosklogs');
+Route::get('/status', function (\Illuminate\Http\Request $request){
+    $lockStatus = 'Account lock status: ';
+   if($request->session()->get('lockout'))
+        $lockStatus = $lockStatus . 'locked';
+   else
+       $lockStatus = $lockStatus . 'unlocked';
+   return $lockStatus;
+
 });
 Auth::routes();
 
@@ -23,7 +30,7 @@ Route::get('home', 'HomeController@index')->name('home');
 
 /*
  * Kiosk user linking routes
- */
+ */view('kiosklogs');
 Route::delete('kiosks/{kiosk}/detach/{user}', 'KioskController@detach');
 Route::post('kiosks/{kiosk}/attach/{user}', 'KioskController@attach');
 
