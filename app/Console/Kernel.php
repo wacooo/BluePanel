@@ -30,8 +30,6 @@ class Kernel extends ConsoleKernel
         foreach ($kioskSched as $entry)
         {
             //trim off mysql seconds
-            echo $entry->id;
-
             $schedule->command('kiosk:signoutstudents ' . $entry->id)
                 ->dailyAt($entry->time);
         }
