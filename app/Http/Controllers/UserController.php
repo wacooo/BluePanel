@@ -16,7 +16,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
         return view('admin.users');
     }
 
@@ -27,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        return view('admin.createuser');
     }
 
     /**
@@ -35,9 +34,11 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-
+        $request->merge(['password' => Hash::make($request->password)]);
+        User::create($request->all());
+        return redirect('/users');
     }
 
     /**

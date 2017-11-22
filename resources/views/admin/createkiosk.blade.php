@@ -15,28 +15,33 @@
 @push('scripts')
 @endpush
 @section('content')
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Quick Example</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <form role="form" action="/kiosks" method="post">
-        <div class="box-body">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Kiosk Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Student Success">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Kiosk Room Number</label>
-                <input type="number" class="form-control" id="room" name="room" placeholder="123">
-            </div>
-        </div>
-        <!-- /.box-body -->
+    <div class="col-lg-6">
 
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Create</button>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Kiosk info</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action="/kiosks" method="post">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="name">Kiosk Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Student Success">
+                    </div>
+                    <div class="form-group">
+                        <label for="room">Kiosk Room Number</label>
+                        <input type="number" class="form-control" id="room" name="room" placeholder="123">
+                    </div>
+                </div>
+
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    {{csrf_field()}}
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
 @endsection

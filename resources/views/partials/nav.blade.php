@@ -88,7 +88,7 @@
                 </li>
                 <li class="{{ Request::is('users') ? 'active' : '' }}">
 
-                    <a href="users">
+                    <a href="/users">
                         <i class="fa fa-users"></i> <span>Manage Users</span>
                         <span class="pull-right-container">
                         </span>

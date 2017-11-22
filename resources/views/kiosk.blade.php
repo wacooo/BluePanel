@@ -68,7 +68,6 @@
         $(document).ready(function () {
             $('#button').click(function (e) {
                 var inputvalue =  parseInt($("#input").val().replace(/-/g, ""));
-                console.log(inputvalue);
                 $("#input").val('');
                 $('#input').focus();
                 $.ajax({
@@ -81,8 +80,6 @@
                     dataType: "json",
                     contentType: "application/json",
                     success: function (msg) {
-                        console.log(msg);
-                        console.log(JSON.stringify(msg.student));
                         if(msg.status === "attached"){
                             signin(msg.student);
                         }
@@ -94,7 +91,7 @@
                         }
                     },
                     error: function (err) {
-                        console.log(err)
+                        console.log(err);
                         errormsg();
                     }
                 });
@@ -105,7 +102,7 @@
         function signin(student) {
             swal({
                 title: "Welcome " + student['first'] + " " + student['last'],
-                text: "You were signed into room {{$kiosk->room}}",
+                text: "You are signed into room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
                 timer:"5000"
@@ -114,7 +111,7 @@
         function signout(student) {
             swal({
                 title: "Goodbye " + student['first'] + " " + student['last'],
-                text: "You were signed out of room {{$kiosk->room}}",
+                text: "You are signed out of room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
                 timer:"5000"

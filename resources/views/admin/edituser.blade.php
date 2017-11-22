@@ -31,13 +31,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">Username</label>
-                            <div>
-                                <input type="text" name="username" value="{{$user->username}}"
-                                       class="form-control form-autocomplete-stop">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="registered" class="control-label">Client First Name</label>
                             <div>
                                 <input type="text" name="name_first" value="{{$user->name_first}}"

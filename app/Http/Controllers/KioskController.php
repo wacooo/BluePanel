@@ -65,7 +65,7 @@ class KioskController extends Controller
      */
     public function create()
     {
-
+        return view('admin.createkiosk');
     }
 
     /**
@@ -77,6 +77,7 @@ class KioskController extends Controller
     {
         //TODO - verify and sanitize user input
         Kiosk::create($request->all());
+        return redirect('/kiosks');
     }
 
     /**
