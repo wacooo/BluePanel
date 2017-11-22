@@ -43,6 +43,49 @@
                             location.reload();
                         }
                     }
+
+                });
+
+            });
+        }
+
+        function removeTimeFromKiosk(time) {
+
+            var url = "/kiosks/{{$kiosk->id}}/schedule";
+            $.ajax({
+                url: url,
+                data: {
+                    time:time
+                },
+                type: "DELETE",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        }
+
+        function addTimeToKiosk() {
+            var timesArray = $("#timeSelectBox").val();
+            var i = 0;
+            timesArray.forEach(function (val) {
+                i++;
+                var url = "/kiosks/{{$kiosk->id}}/schedule";
+                $.ajax({
+                    url: url,
+                    data:{
+                      time: val
+                    },
+                    type: "POST",
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (resp) {
+                        if (i = timesArray.length) {
+                            location.reload();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
                 });
 
             });
@@ -82,7 +125,7 @@
 
                     <div class="box-footer">
                         {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="_method" value="put"/>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -127,10 +170,8 @@
                     </table>
                 </div>
             </div>
-        </div>
 
 
-        <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Add User</h3>
@@ -169,6 +210,81 @@
             </div>
         </div>
 
+
+        <div class="col-lg-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Kiosk Sign-Out Times</h3>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th>Policy ID</th>
+                            <th>Scheduled Time</th>
+                            <th>Created At</th>
+                        </tr>
+                        @foreach($kiosk->schedule as $schedule)
+                            <tr>
+
+                                <td><code>{{$schedule->id}}</code></td>
+                                <td>{{$schedule->time}}</td>
+                                <td>{{$user->created_at}}</td>
+                                <td>
+                                    <button onclick="removeTimeFromKiosk('{{$schedule->time}}')"
+                                            class="btn btn-xs btn-danger"><i
+                                                class="fa fa-trash-o"></i> Revoke
+                                    </button>
+                                </td>
+                            </tr>
+
+                        @endforeach
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sign-out Times</h3>
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Times selected here will be auto-signout times</label><br>
+                                <select class="user-add-box" style="width: 100%;" id="timeSelectBox" name="times"
+                                        multiple="multiple">
+                                    @for($hours=0; $hours<24; $hours++)
+                                        @for($mins=0; $mins<60; $mins+=5)
+                                            <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT).':' .str_pad($mins,2,'0',STR_PAD_LEFT)}}">
+                                                {{str_pad($hours,2,'0',STR_PAD_LEFT).':'.str_pad($mins,2,'0',STR_PAD_LEFT)}}
+                                            </option>
+                                        @endfor
+                                    @endfor
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-block btn-success" onClick="addTimeToKiosk()">
+                                Set Times
+                            </button>
+
+                            <!-- /.form-group -->
+
+                            <!-- /.form-group -->
+                        </div>
+
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+            </div>
+        </div>
         <div class="col-lg-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
@@ -188,5 +304,8 @@
             </div>
         </div>
     </div>
+    <!--
+    https://medium.com/@megvis17/film-analysis-of-the-movie-pleasantville-d30701e3d3d9
+    -->
 
 @endsection

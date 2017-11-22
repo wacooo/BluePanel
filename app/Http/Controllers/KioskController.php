@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\KioskSchedule;
 use App\Student;
 use App\User;
 use App\Kiosk;
@@ -41,19 +42,14 @@ class KioskController extends Controller
      * @param Kiosk $kiosk
      * @return Response
      */
-    public function logs(Request $request, $kiosk)
+    public function logs(Request $request, Kiosk $kiosk)
     {
-        $kiosk = Kiosk::findOrFail($kiosk);
-
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
             //return datatables($kiosk->logs)->toJson();
             //return datatables()->collection($kiosk->logs)->toJson();
             return datatables()->of($kiosk->logs)->make(true);
 
-        }
-        else
-        {
+        } else {
             return view('kiosklogs')->with('kiosk', $kiosk);
         }
     }
@@ -110,8 +106,8 @@ class KioskController extends Controller
      */
     public function update(Request $request, Kiosk $kiosk)
     {
-    //TODO - verify and sanitize user input
-        $kiosk->update($request->only(['name','room']));
+        //TODO - verify and sanitize user input
+        $kiosk->update($request->only(['name', 'room']));
         return view('admin.editkiosk')->with('kiosk', $kiosk);
 
     }
@@ -136,15 +132,15 @@ class KioskController extends Controller
      * @param User $user
      * @return bool
      */
-    public function attach($kiosk, User $user)
+    public function attach(Kiosk $kiosk, User $user)
     {
         //TODO - verify and sanitize user input
 
-        if (! $user->kiosks->contains($kiosk)) {
-            $user->kiosks()->attach($kiosk);
-            return response()->json(['status'=>'ok']);
-        }else{
-            return response()->json(['status'=>'exists']);
+        if (!$user->kiosks->contains($kiosk->id)) {
+            $user->kiosks()->attach($kiosk->id);
+            return response()->json(['status' => 'ok']);
+        } else {
+            return response()->json(['status' => 'exists']);
         }
 
     }
@@ -156,42 +152,70 @@ class KioskController extends Controller
      * @param User $user
      * @return bool
      */
-    public function detach($kiosk, User $user)
+    public function detach(Kiosk $kiosk, User $user)
     {
         //TODO - verify and sanitize user input
-        $user->kiosks()->detach($kiosk);
-        return response()->json(['status'=>'ok']);
+        $user->kiosks()->detach($kiosk->id);
+        return response()->json(['status' => 'ok']);
     }
 
-    public function toggleStudent($kioskid, $studentid)
+    public function toggleStudent(Kiosk $kiosk, Student $student)
     {
-        $student = Student::findOrFail($studentid);
-        $kiosk = Kiosk::findOrFail($kioskid);
 
         //TODO - verify and sanitize user input
         //TODO - Log users into the kiosk_logs table
         $present = $student->kiosks->contains($kiosk->id);
-        if($present){
+        if ($present) {
             //Add entry to logs
-            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign In']);
+            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign Out']);
 
             //log the student in
             $student->kiosks()->detach($kiosk->id);
 
             //Return info for AJAX to display on the kiosk
-            return response()->json(['status'=>'detached', 'student'=>$student->toArray()]);
-        }
-        else{
+            return response()->json(['status' => 'detached', 'student' => $student->toArray()]);
+        } else {
             //Add entry to logs
-            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign Out']);
+            $kiosk->logs()->attach($student->id, ['type' => 'Kiosk Sign In']);
 
             //log the student in
             $student->kiosks()->attach($kiosk->id);
 
-            return response()->json(['status'=>'attached', 'student'=>$student->toArray()]);
+            return response()->json(['status' => 'attached', 'student' => $student->toArray()]);
         }
     }
 
+    public function addScheduleTime(Request $request,Kiosk $kiosk)
+    {
+        //TODO Verify input
+        $time = $request->input('time');
+
+        //If the record exists delete it
+        $schedule = KioskSchedule::where(['kiosk_id' => $kiosk->id, 'time' => $time])->first();
+        if(!is_null($schedule))
+            $schedule->delete();
+
+        //Create a new schedule instance
+        $kioskSchedule = new KioskSchedule();
+        $kioskSchedule->time = $time;
+        $kioskSchedule->kiosk_id = $kiosk->id;
+        $kioskSchedule->save();
+
+        //Respond with success
+        return response()->json(['status' => 'added']);
+
+    }
+
+    public function deleteScheduleTime(Request $request, Kiosk $kiosk)
+    {
+        $time = $request->input('time');
+        //Get the instance of the scheduler
+        $schedule = KioskSchedule::where(['kiosk_id' => $kiosk->id, 'time' => $time])->first();
+        //Bye bye schedule
+        $schedule->delete();
+        //Return with a status of removed
+        return response()->json(['status' => 'removed']);
+    }
 }
 
 ?>

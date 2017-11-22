@@ -29,4 +29,10 @@ class Kiosk extends Model
         return $this->belongsToMany('App\User')->withTimestamps();
     }
 
+    public function schedule()
+    {
+        return $this->hasMany('App\KioskSchedule');
+    }
+
+
 }

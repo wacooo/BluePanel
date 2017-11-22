@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +25,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $kioskSched = DB::table('kiosk_schedule')->get();
+
+        foreach ($kioskSched as $entry)
+        {
+            //trim off mysql seconds
+            echo $entry->id;
+
+            $schedule->command('kiosk:signoutstudents ' . $entry->id)
+                ->dailyAt($entry->time);
+        }
+
     }
 
     /**

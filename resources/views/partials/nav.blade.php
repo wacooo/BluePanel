@@ -22,20 +22,19 @@
     </div>
 
     <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">ACTIVITIES</li>
 
-        <li class="treeview">
-            <a href="#">
+        <li class="{{ Request::is('/home') ? 'active' : '' }}">
+
+            <a href="/home">
                 <i class="fa fa-user-secret"></i> <span>Present Students</span>
                 <span class="pull-right-container">
-            </span>
+                        </span>
             </a>
-            <ul class="treeview-menu">
-
-            </ul>
         </li>
+
         <li class="treeview">
-            <a href="#">
+            <a href="">
                 <i class="fa fa-clock-o"></i> <span>Recent Students</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
@@ -53,7 +52,7 @@
         @auth
             <li class="header">User Tasks</li>
             <li class="treeview">
-                <a href="#">
+                <a href="">
                     <i class="fa fa-desktop"></i> <span>My Kiosks</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

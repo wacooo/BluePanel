@@ -24,20 +24,24 @@ Route::get('home', 'HomeController@index')->name('home');
 /*
  * Kiosk user linking routes
  */
-Route::delete('kiosks/{id}/detach/{user}', 'KioskController@detach');
-Route::post('kiosks/{id}/attach/{user}', 'KioskController@attach');
+Route::delete('kiosks/{kiosk}/detach/{user}', 'KioskController@detach');
+Route::post('kiosks/{kiosk}/attach/{user}', 'KioskController@attach');
+
+/**
+ * Kiosk signout time routes
+ */
+Route::post('kiosks/{kiosk}/schedule', 'KioskController@addScheduleTime');
+Route::delete('kiosks/{kiosk}/schedule', 'KioskController@deleteScheduleTime');
+
 
 //Kiosk toggle student route
 Route::post('kiosks/{kiosk}/togglestudent/{student}', 'KioskController@toggleStudent');
 
 //Kiosk routes log
-Route::get('kiosks/{id}/logs', 'KioskController@logs');
+Route::get('kiosks/{kiosk}/logs', 'KioskController@logs');
 
 //Standard kiosk route initialization
 Route::resource('kiosks', 'KioskController');
 
 
 Route::resource('users', 'UserController');
-
-//Admin routes
-Route::get('/admin/kiosks', 'KiosksController@admin_index');

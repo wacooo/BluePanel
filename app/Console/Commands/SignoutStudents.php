@@ -13,14 +13,14 @@ class SignoutStudents extends Command
      *
      * @var string
      */
-    protected $signature = 'librarydb:signoutall';
+    protected $signature = 'kiosk:signoutstudents {kiosk}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Sign out all students currently in the library.';
+    protected $description = 'Sign out all students at the specified kiosk.';
 
     /**
      * Create a new command instance.
@@ -39,19 +39,12 @@ class SignoutStudents extends Command
      */
     public function handle()
     {
-        $result = DB::table('library_students')->get();
+        $kioskid = $this->argument('kiosk');
+        $kiosk = \App\Kiosk::findOrFail($kioskid);
 
-        foreach($result as $student){
-            $log_instance = new KioskLogs();
-            $log_instance->Number = $student->Number;
-            $log_instance->Last = $student->Last;
-            $log_instance->First = $student->First;
-            $log_instance->Gender = $student->Gender;
-            $log_instance->type = "out";
-            $log_instance->automated = true;
-            $log_instance->save();
-            DB::table('library_students')->where('id', '=', $student->id)->delete();
-
+        foreach($kiosk->students as $student){
+            $kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] End Of Period']);
+            $kiosk->students()->detach($student->id);
         }
     }
 }

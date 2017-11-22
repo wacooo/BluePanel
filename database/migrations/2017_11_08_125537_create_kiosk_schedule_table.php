@@ -16,7 +16,7 @@ class CreateKioskScheduleTable extends Migration
         Schema::create('kiosk_schedule', function(Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('kiosk_id')->unsigned();
-            $table->time('time');
+            $table->text('time');
             $table->timestamps();
         });
     }
