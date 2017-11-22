@@ -19,10 +19,9 @@ class KioskController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin')->except(['show']);
-        $this->authorizeResource(Kiosk::class);
-
+        $this->middleware('lockout')->only(['show','toggleStudent']);
+        $this->middleware('auth')->except(['show', 'toggleStudent']);
+        $this->middleware('admin')->except(['show', 'toggleStudent','logs']);
     }
 
     /**
@@ -82,9 +81,14 @@ class KioskController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function show(Kiosk $kiosk)
+    public function show(Request $request, Kiosk $kiosk)
     {
-        return view('kiosk')->with('kiosk', $kiosk);
+        if (Auth::check())
+        {
+            $request->session()->put('lockout', true);
+            Auth::logout();
+        }
+        return view('kiosk')->with(['kiosk'=> $kiosk, 'lockout'=>$request->session()->get('lockout')]);
     }
 
     /**
