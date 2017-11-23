@@ -20,7 +20,7 @@ class KioskController extends Controller
     public function __construct()
     {
         $this->middleware('lockout')->only(['show','toggleStudent']);
-        $this->middleware('auth')->except(['show', 'toggleStudent']);
+        $this->middleware('auth')->except(['show', 'toggleStudent','logs']);
         $this->middleware('admin')->except(['show', 'toggleStudent','logs']);
     }
 
