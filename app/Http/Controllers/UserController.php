@@ -10,6 +10,15 @@ class UserController extends Controller
 {
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -37,7 +46,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->merge(['password' => Hash::make($request->password)]);
-        User::create($request->all());
+        $validatedRequest = $request->validate([
+            'name_first'=>'required|string|max:15',
+            'name_last'=>'required|string|max:15',
+            'email'=>'required|email|unique:users|',
+            'password'=>'string|required',
+        ]);
+        User::create($validatedRequest);
         return redirect('/users');
     }
 
@@ -73,16 +88,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //TODO ADD VERIFICATION
-
+        $validatedRequest = $request->validate([
+            'name_first'=>'required|string|max:15',
+            'name_last'=>'required|string|max:15',
+            'email'=>'required|email',
+            'isadmin'=>'required|integer',
+        ]);
         //If there is a password change request
         $password = $request->input('password');
         if(isset($password)){
-            $user->update($request->except('password'));
+            $user->update($validatedRequest);
             $user->password = Hash::make($password);
             $user->save();
+
         }else {
-            $user->update($request->except('password'));
+            $user->update($validatedRequest);
         }
         return view('admin.edituser')->with('user', $user);
     }
@@ -96,6 +116,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
             $user->delete();
+        return view('admin.users');
+
     }
 
 }

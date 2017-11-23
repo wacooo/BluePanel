@@ -61,7 +61,22 @@
                 <ul class="treeview-menu">
                     @foreach(Auth::user()->kiosks as $kiosk)
                         <li>
-                            <a href="{{ url('kiosks', [$kiosk->id]) }}">
+                            <a href="#"
+                               onclick="swal({
+                                       title: 'Are you sure?',
+                                       text: 'Once a kiosk is loaded your account will be logged out and a kiosk session will start.',
+                                       icon: 'warning',
+                                       buttons: true,
+                                       dangerMode: true,
+                                       }).then((willRedirect) => {
+                                       if (willRedirect) {
+                                       window.location = '/kiosks/{{$kiosk->id}}';
+                                       }
+                                       else {
+                                       swal('Phewf! That was a close one!');
+                                       }
+                                       });
+                                       ">
                                 <i class="fa fa-circle-o"></i>
                                 {{$kiosk->name}}
                             </a>

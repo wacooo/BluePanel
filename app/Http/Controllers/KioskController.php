@@ -44,8 +44,6 @@ class KioskController extends Controller
     public function logs(Request $request, Kiosk $kiosk)
     {
         if ($request->ajax()) {
-            //return datatables($kiosk->logs)->toJson();
-            //return datatables()->collection($kiosk->logs)->toJson();
             return datatables()->of($kiosk->logs)->make(true);
 
         } else {
@@ -70,8 +68,12 @@ class KioskController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO - verify and sanitize user input
-        Kiosk::create($request->all());
+        $validatedRequest = $request->validate([
+            'name'=>'required|string|max:20',
+            'room'=>'required|integer'
+
+        ]);
+        Kiosk::create($validatedRequest);
         return redirect('/kiosks');
     }
 
@@ -110,8 +112,13 @@ class KioskController extends Controller
      */
     public function update(Request $request, Kiosk $kiosk)
     {
-        //TODO - verify and sanitize user input
-        $kiosk->update($request->only(['name', 'room']));
+        $validatedRequest = $request->validate([
+            'name'=>'required|string|max:20',
+            'room'=>'required|Integer'
+
+        ]);
+
+        $kiosk->update($validatedRequest);
         return view('admin.editkiosk')->with('kiosk', $kiosk);
 
     }
@@ -138,8 +145,6 @@ class KioskController extends Controller
      */
     public function attach(Kiosk $kiosk, User $user)
     {
-        //TODO - verify and sanitize user input
-
         if (!$user->kiosks->contains($kiosk->id)) {
             $user->kiosks()->attach($kiosk->id);
             return response()->json(['status' => 'ok']);
@@ -158,16 +163,12 @@ class KioskController extends Controller
      */
     public function detach(Kiosk $kiosk, User $user)
     {
-        //TODO - verify and sanitize user input
         $user->kiosks()->detach($kiosk->id);
         return response()->json(['status' => 'ok']);
     }
 
     public function toggleStudent(Kiosk $kiosk, Student $student)
     {
-
-        //TODO - verify and sanitize user input
-        //TODO - Log users into the kiosk_logs table
         $present = $student->kiosks->contains($kiosk->id);
         if ($present) {
             //Add entry to logs
@@ -191,8 +192,11 @@ class KioskController extends Controller
 
     public function addScheduleTime(Request $request,Kiosk $kiosk)
     {
-        //TODO Verify input
-        $time = $request->input('time');
+        $validatedRequest = $request->validate([
+           'time'=> 'string'
+        ]);
+
+        $time = $validatedRequest['time'];
 
         //If the record exists delete it
         $schedule = KioskSchedule::where(['kiosk_id' => $kiosk->id, 'time' => $time])->first();
@@ -212,7 +216,12 @@ class KioskController extends Controller
 
     public function deleteScheduleTime(Request $request, Kiosk $kiosk)
     {
-        $time = $request->input('time');
+        $validatedRequest = $request->validate([
+            'time'=> 'string'
+        ]);
+
+
+        $time = $validatedRequest['time'];
         //Get the instance of the scheduler
         $schedule = KioskSchedule::where(['kiosk_id' => $kiosk->id, 'time' => $time])->first();
         //Bye bye schedule

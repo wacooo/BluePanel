@@ -13,6 +13,8 @@ class CreateKioskLogsTable extends Migration {
 			$table->integer('student_id')->unsigned();
 			$table->string('type');
             $table->timestamps();
+            $table->softDeletes();
+
 
         });
 	}

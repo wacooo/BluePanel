@@ -28,7 +28,6 @@ class KioskPolicy
     {
         //Verify that the user has permissions via the pivot table
         return $user->kiosks()->where('kiosk_id', $kiosk->id)->first();
-
     }
 
     /**

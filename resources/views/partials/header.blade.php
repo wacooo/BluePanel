@@ -43,10 +43,12 @@
 
                 </a>
             <li>
+                @auth
                 <a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
                    data-original-title="Logout"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="fa fa-power-off"></i></a></li>
+                @endauth
         </ul>
 
         <!-- Control Sidebar Toggle Button -->
