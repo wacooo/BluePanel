@@ -24,7 +24,7 @@
 
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="/login">
                     @auth
                         <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100"
                              class="user-image" alt="User Image">
