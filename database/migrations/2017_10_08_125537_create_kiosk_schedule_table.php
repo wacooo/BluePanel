@@ -28,6 +28,6 @@ class CreateKioskScheduleTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('kiosk_schedule');
     }
 }

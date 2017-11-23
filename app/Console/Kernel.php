@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,7 +26,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $kioskSched = DB::table('kiosk_schedule')->get();
+	$kioskSched = [];
+	if(Schema::hasTable('kiosk_schedule'))
+        	$kioskSched = DB::table('kiosk_schedule')->get();
 
         foreach ($kioskSched as $entry)
         {
