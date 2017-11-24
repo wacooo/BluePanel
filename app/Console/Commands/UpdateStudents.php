@@ -39,29 +39,27 @@ class UpdateStudents extends Command
      */
     public function handle()
     {
-        DB::statement("SET foreign_key_checks=0");
+        DB::statement('SET foreign_key_checks=0');
         Student::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        DB::statement('SET foreign_key_checks=1');
         //Define flag to ignore first row of markbook contents because markbook sucks and is outdated
         $flag = true;
-        if (($handle = fopen(env("STUDENT_IMPORT_FILE"), 'r')) !== FALSE) {
-
-            while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+        if (($handle = fopen(env('STUDENT_IMPORT_FILE'), 'r')) !== false) {
+            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
                 if ($flag) {
                     $flag = false;
                     continue;
                 }
                 $student = new Student();
-                $student->last = utf8_encode($data [0]);
-                $student->first = utf8_encode($data [1]);
-                $student->gender = utf8_encode($data [2]);
-                $student->id = utf8_encode($data [3]);
+                $student->last = utf8_encode($data[0]);
+                $student->first = utf8_encode($data[1]);
+                $student->gender = utf8_encode($data[2]);
+                $student->id = utf8_encode($data[3]);
 
                 $student->save();
             }
             fclose($handle);
             $this->info('Student database updated successfully! :)');
-
         }
     }
 }

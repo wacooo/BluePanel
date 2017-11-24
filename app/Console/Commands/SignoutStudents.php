@@ -2,9 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\KioskLogs;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class SignoutStudents extends Command
 {
@@ -42,12 +40,10 @@ class SignoutStudents extends Command
         $kioskid = $this->argument('kiosk');
         $kiosk = \App\Kiosk::findOrFail($kioskid);
 
-        foreach($kiosk->students as $student){
+        foreach ($kiosk->students as $student) {
             $kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] End Of Period']);
             $kiosk->students()->detach($student->id);
-
         }
         $this->info('All students signed out :)');
-
     }
 }

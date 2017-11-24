@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name_first','name_last','username', 'email', 'password','isadmin',
+        'name_first', 'name_last', 'username', 'email', 'password', 'isadmin',
     ];
 
     /**
@@ -27,14 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
     public function kiosks()
     {
         return $this->belongsToMany('App\Kiosk');
     }
 
-    public function isAdministrator(){
-
+    public function isAdministrator()
+    {
         return (bool) $this->isadmin;
     }
 }

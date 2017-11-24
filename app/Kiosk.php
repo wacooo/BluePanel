@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kiosk extends Model 
+class Kiosk extends Model
 {
-
     protected $table = 'kiosks';
     protected $fillable = ['room', 'name'];
     public $timestamps = true;
@@ -21,7 +20,6 @@ class Kiosk extends Model
         return $this->belongstoMany('App\Student', 'kiosk_logs', 'kiosk_id', 'student_id')
             ->withTimestamps()
             ->withPivot('type');
-
     }
 
     public function users()
@@ -33,6 +31,4 @@ class Kiosk extends Model
     {
         return $this->hasMany('App\KioskSchedule');
     }
-
-
 }

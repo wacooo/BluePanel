@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -24,8 +23,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::check())
+        if (Auth::check()) {
             $request->session()->put('lockout', false);
+        }
+
         return view('presentstudents');
     }
 }
