@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel
             $schedule->command('kiosk:signoutstudents ' . $entry->id)
                 ->dailyAt($entry->time);
         }
-
+        $schedule->command('studentdb:update')
+            ->weekdays()->at('23:00');
     }
 
     /**
