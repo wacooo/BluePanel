@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/vendor/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/sweetalert/sweetalert.min.css')}}">
-    <title>LibTrackPro</title>
+    <title>BluePanel Kiosk</title>
     <script src="{{ asset('/vendor/js/jquery.js') }}"></script>
     <script src="{{ asset('/vendor/js/mask.js') }}"></script>
     <script src="{{ asset('/vendor/js/bootstrap.min.js') }}"></script>
