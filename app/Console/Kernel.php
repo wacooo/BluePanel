@@ -27,18 +27,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $kioskSched = [];
-        if (Schema::hasTable('kiosk_schedule')) {
-            $kioskSched = DB::table('kiosk_schedule')->get();
-        }
+        // Test database connection
+        try {
+            DB::connection()->getPdo();
+            $kioskSched = [];
+            if (Schema::hasTable('kiosk_schedule')) {
+                $kioskSched = DB::table('kiosk_schedule')->get();
+            }
 
-        foreach ($kioskSched as $entry) {
-            //trim off mysql seconds
-            $schedule->command('kiosk:signoutstudents '.$entry->id)
-                ->dailyAt($entry->time);
+            foreach ($kioskSched as $entry) {
+                //trim off mysql seconds
+                $schedule->command('kiosk:signoutstudents '.$entry->id)
+                    ->dailyAt($entry->time);
+            }
+
+            $schedule->command('studentdb:update')
+                ->weekdays()->at('23:00');
+        } catch (\Exception $e) {
+            //We dont care if it fails
         }
-        $schedule->command('studentdb:update')
-            ->weekdays()->at('23:00');
     }
 
     /**
