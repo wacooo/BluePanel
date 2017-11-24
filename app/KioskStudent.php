@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KioskStudent extends Model 
+class KioskStudent extends Model
 {
-
     protected $table = 'kiosk_student';
     public $timestamps = true;
 
@@ -14,5 +13,4 @@ class KioskStudent extends Model
     {
         return $this->belongsTo('App\Student');
     }
-
 }

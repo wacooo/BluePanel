@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Kiosk;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class KioskPolicy
@@ -20,8 +20,9 @@ class KioskPolicy
     /**
      * Determine whether the user can view the kiosk.
      *
-     * @param  \App\User  $user
-     * @param  \App\Kiosk  $kiosk
+     * @param \App\User  $user
+     * @param \App\Kiosk $kiosk
+     *
      * @return mixed
      */
     public function view(User $user, Kiosk $kiosk)
@@ -33,7 +34,8 @@ class KioskPolicy
     /**
      * Determine whether the user can create kiosks.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return mixed
      */
     public function create(User $user)
@@ -41,13 +43,12 @@ class KioskPolicy
         //
     }
 
-
-
     /**
      * Determine whether the user can update the kiosk.
      *
-     * @param  \App\User  $user
-     * @param  \App\Kiosk  $kiosk
+     * @param \App\User  $user
+     * @param \App\Kiosk $kiosk
+     *
      * @return mixed
      */
     public function update(User $user, Kiosk $kiosk)
@@ -58,12 +59,12 @@ class KioskPolicy
     /**
      * Determine whether the user can delete the kiosk.
      *
-     * @param  \App\User  $user
-     * @param  \App\Kiosk  $kiosk
+     * @param \App\User  $user
+     * @param \App\Kiosk $kiosk
+     *
      * @return mixed
      */
     public function delete(User $user, Kiosk $kiosk)
     {
-
     }
 }

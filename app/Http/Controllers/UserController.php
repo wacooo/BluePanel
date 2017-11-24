@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -18,6 +17,7 @@ class UserController extends Controller
     {
         $this->middleware('admin');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,79 +47,78 @@ class UserController extends Controller
     {
         $request->merge(['password' => Hash::make($request->password)]);
         $validatedRequest = $request->validate([
-            'name_first'=>'required|string|max:15',
-            'name_last'=>'required|string|max:15',
-            'email'=>'required|email|unique:users|',
-            'password'=>'string|required',
+            'name_first'=> 'required|string|max:15',
+            'name_last' => 'required|string|max:15',
+            'email'     => 'required|email|unique:users|',
+            'password'  => 'string|required',
         ]);
         User::create($validatedRequest);
+
         return redirect('/users');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show(User $user)
     {
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
-
     public function edit(User $user)
     {
         return view('admin.edituser')->with('user', $user);
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Request $request, User $user)
     {
         $validatedRequest = $request->validate([
-            'name_first'=>'required|string|max:15',
-            'name_last'=>'required|string|max:15',
-            'email'=>'required|email',
-            'isadmin'=>'required|integer',
+            'name_first'=> 'required|string|max:15',
+            'name_last' => 'required|string|max:15',
+            'email'     => 'required|email',
+            'isadmin'   => 'required|integer',
         ]);
         //If there is a password change request
         $password = $request->input('password');
-        if(isset($password)){
+        if (isset($password)) {
             $user->update($validatedRequest);
             $user->password = Hash::make($password);
             $user->save();
-
-        }else {
+        } else {
             $user->update($validatedRequest);
         }
+
         return view('admin.edituser')->with('user', $user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy(User $user)
     {
-            $user->delete();
+        $user->delete();
+
         return view('admin.users');
-
     }
-
 }
-
-?>

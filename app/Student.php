@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model 
+class Student extends Model
 {
-
     protected $table = 'students';
     public $timestamps = false;
 
@@ -21,5 +20,4 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Kiosk')->withTimestamps();
     }
-
 }

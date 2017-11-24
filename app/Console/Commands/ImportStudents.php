@@ -40,20 +40,22 @@ class ImportStudents extends Command
     {
         //Define flag to ignore first row of markbook contents because markbook sucks and is outdated
         $flag = true;
-        if (($handle = fopen ($this->argument('file'), 'r' )) !== FALSE) {
-            while ( ($data = fgetcsv ( $handle, 1000, ',' )) !== FALSE ) {
-                if($flag) { $flag = false; continue; }
+        if (($handle = fopen($this->argument('file'), 'r')) !== false) {
+            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+                if ($flag) {
+                    $flag = false;
+                    continue;
+                }
                 $student = new Student();
-                $student->last = utf8_encode (  $data [0]);
-                $student->first = utf8_encode (  $data [1]);
-                $student->gender = utf8_encode (  $data [2]);
-                $student->id = utf8_encode (  $data [3]);
+                $student->last = utf8_encode($data[0]);
+                $student->first = utf8_encode($data[1]);
+                $student->gender = utf8_encode($data[2]);
+                $student->id = utf8_encode($data[3]);
 
-                $student->save ();
+                $student->save();
             }
-            fclose ( $handle );
+            fclose($handle);
             $this->info('Student database imported successfully! :D');
-
         }
     }
 }
