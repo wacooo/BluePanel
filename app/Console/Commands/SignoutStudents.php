@@ -45,6 +45,9 @@ class SignoutStudents extends Command
         foreach($kiosk->students as $student){
             $kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] End Of Period']);
             $kiosk->students()->detach($student->id);
+
         }
+        $this->info('All students signed out :)');
+
     }
 }
