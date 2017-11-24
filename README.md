@@ -1,5 +1,10 @@
 # BluePanel
 [![StyleCI](https://styleci.io/repos/111870853/shield?branch=master)](https://styleci.io/repos/111870853)
+
+Master [![Build Status](https://travis-ci.org/BealDevelopment/BluePanel.svg?branch=master)](https://travis-ci.org/BealDevelopment/BluePanel)
+
+Dev [![Build Status](https://travis-ci.org/BealDevelopment/BluePanel.svg?branch=dev)](https://travis-ci.org/BealDevelopment/BluePanel)
+
 *Because a piece of paper isn't good enough*
 
 BluePanel is a tool designed for H.B Beal secondary school to log students going into support rooms. Teachers will be able to view theese statistics via the web gui. There is a permissions system in which is outlined below. This project is open source and we invite anyone to contribute and use this amazing tool.
