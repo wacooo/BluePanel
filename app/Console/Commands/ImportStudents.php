@@ -52,6 +52,8 @@ class ImportStudents extends Command
                 $student->save ();
             }
             fclose ( $handle );
+            $this->info('Student database imported successfully! :D');
+
         }
     }
 }
