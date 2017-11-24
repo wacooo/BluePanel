@@ -5,9 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class KioskLogs extends Model 
+class KioskLogs extends Model
 {
-
     protected $table = 'kiosk_log';
     public $timestamps = true;
     use SoftDeletes;
@@ -18,5 +17,4 @@ class KioskLogs extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
-
 }

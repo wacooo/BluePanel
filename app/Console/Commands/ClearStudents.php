@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Student;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\Student;
 
 class ClearStudents extends Command
 {
@@ -39,9 +39,9 @@ class ClearStudents extends Command
      */
     public function handle()
     {
-        DB::statement("SET foreign_key_checks=0");
+        DB::statement('SET foreign_key_checks=0');
         Student::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        DB::statement('SET foreign_key_checks=1');
         $this->info('Student database cleared successfully!');
     }
 }
