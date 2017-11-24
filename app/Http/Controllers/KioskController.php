@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Kiosk;
 use App\KioskSchedule;
 use App\Student;
 use App\User;
-use App\Kiosk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class KioskController extends Controller
 {
@@ -19,9 +18,9 @@ class KioskController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('lockout')->only(['show','toggleStudent']);
-        $this->middleware('auth')->except(['show', 'toggleStudent','logs']);
-        $this->middleware('admin')->except(['show', 'toggleStudent','logs']);
+        $this->middleware('lockout')->only(['show', 'toggleStudent']);
+        $this->middleware('auth')->except(['show', 'toggleStudent', 'logs']);
+        $this->middleware('admin')->except(['show', 'toggleStudent', 'logs']);
     }
 
     /**
@@ -35,17 +34,17 @@ class KioskController extends Controller
     }
 
     /**
-     * Show the logs of a kiosk
+     * Show the logs of a kiosk.
      *
      * @param Request $request
-     * @param Kiosk $kiosk
+     * @param Kiosk   $kiosk
+     *
      * @return Response
      */
     public function logs(Request $request, Kiosk $kiosk)
     {
         if ($request->ajax()) {
             return datatables()->of($kiosk->logs)->make(true);
-
         } else {
             return view('kiosklogs')->with('kiosk', $kiosk);
         }
@@ -69,34 +68,37 @@ class KioskController extends Controller
     public function store(Request $request)
     {
         $validatedRequest = $request->validate([
-            'name'=>'required|string|max:20',
-            'room'=>'required|integer'
+            'name'=> 'required|string|max:20',
+            'room'=> 'required|integer',
 
         ]);
         Kiosk::create($validatedRequest);
+
         return redirect('/kiosks');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show(Request $request, Kiosk $kiosk)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $request->session()->put('lockout', true);
             Auth::logout();
         }
+
         return view('kiosk')->with(['kiosk'=> $kiosk, 'lockout'=>$request->session()->get('lockout')]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit(Kiosk $kiosk)
@@ -107,63 +109,68 @@ class KioskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'name'=>'required|string|max:20',
-            'room'=>'required|Integer'
+            'name'=> 'required|string|max:20',
+            'room'=> 'required|Integer',
 
         ]);
 
         $kiosk->update($validatedRequest);
-        return view('admin.editkiosk')->with('kiosk', $kiosk);
 
+        return view('admin.editkiosk')->with('kiosk', $kiosk);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy(Kiosk $kiosk)
     {
         $kiosk->delete();
+
         return redirect()->action('KioskController@index');
     }
 
-
     /**
-     * Assign a user to the selected kiosk
+     * Assign a user to the selected kiosk.
      *
      * @param $kiosk
      * @param User $user
+     *
      * @return bool
      */
     public function attach(Kiosk $kiosk, User $user)
     {
         if (!$user->kiosks->contains($kiosk->id)) {
             $user->kiosks()->attach($kiosk->id);
+
             return response()->json(['status' => 'ok']);
         } else {
             return response()->json(['status' => 'exists']);
         }
-
     }
 
     /**
-     * Delete a user from the selected kiosk
+     * Delete a user from the selected kiosk.
      *
      * @param $kiosk
      * @param User $user
+     *
      * @return bool
      */
     public function detach(Kiosk $kiosk, User $user)
     {
         $user->kiosks()->detach($kiosk->id);
+
         return response()->json(['status' => 'ok']);
     }
 
@@ -190,18 +197,19 @@ class KioskController extends Controller
         }
     }
 
-    public function addScheduleTime(Request $request,Kiosk $kiosk)
+    public function addScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-           'time'=> 'string'
+           'time'=> 'string',
         ]);
 
         $time = $validatedRequest['time'];
 
         //If the record exists delete it
         $schedule = KioskSchedule::where(['kiosk_id' => $kiosk->id, 'time' => $time])->first();
-        if(!is_null($schedule))
+        if (!is_null($schedule)) {
             $schedule->delete();
+        }
 
         //Create a new schedule instance
         $kioskSchedule = new KioskSchedule();
@@ -211,15 +219,13 @@ class KioskController extends Controller
 
         //Respond with success
         return response()->json(['status' => 'added']);
-
     }
 
     public function deleteScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'time'=> 'string'
+            'time'=> 'string',
         ]);
-
 
         $time = $validatedRequest['time'];
         //Get the instance of the scheduler
@@ -230,5 +236,3 @@ class KioskController extends Controller
         return response()->json(['status' => 'removed']);
     }
 }
-
-?>

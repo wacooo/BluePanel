@@ -21,19 +21,20 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-	$kioskSched = [];
-	if(Schema::hasTable('kiosk_schedule'))
-        	$kioskSched = DB::table('kiosk_schedule')->get();
+        $kioskSched = [];
+        if (Schema::hasTable('kiosk_schedule')) {
+            $kioskSched = DB::table('kiosk_schedule')->get();
+        }
 
-        foreach ($kioskSched as $entry)
-        {
+        foreach ($kioskSched as $entry) {
             //trim off mysql seconds
-            $schedule->command('kiosk:signoutstudents ' . $entry->id)
+            $schedule->command('kiosk:signoutstudents '.$entry->id)
                 ->dailyAt($entry->time);
         }
         $schedule->command('studentdb:update')

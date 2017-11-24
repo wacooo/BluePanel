@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateKioskScheduleTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateKioskScheduleTable extends Migration
      */
     public function up()
     {
-        Schema::create('kiosk_schedule', function(Blueprint $table) {
+        Schema::create('kiosk_schedule', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('kiosk_id')->unsigned();
             $table->text('time');

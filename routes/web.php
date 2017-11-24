@@ -11,18 +11,18 @@
 |
 */
 
-
 Route::get('/', function () {
     return redirect('/home');
 });
-Route::get('/status', function (\Illuminate\Http\Request $request){
+Route::get('/status', function (\Illuminate\Http\Request $request) {
     $lockStatus = 'Account lock status: ';
-   if($request->session()->get('lockout'))
-        $lockStatus = $lockStatus . 'locked';
-   else
-       $lockStatus = $lockStatus . 'unlocked';
-   return $lockStatus;
+    if ($request->session()->get('lockout')) {
+        $lockStatus = $lockStatus.'locked';
+    } else {
+        $lockStatus = $lockStatus.'unlocked';
+    }
 
+    return $lockStatus;
 });
 Auth::routes();
 
@@ -34,12 +34,11 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::delete('kiosks/{kiosk}/detach/{user}', 'KioskController@detach');
 Route::post('kiosks/{kiosk}/attach/{user}', 'KioskController@attach');
 
-/**
+/*
  * Kiosk signout time routes
  */
 Route::post('kiosks/{kiosk}/schedule', 'KioskController@addScheduleTime');
 Route::delete('kiosks/{kiosk}/schedule', 'KioskController@deleteScheduleTime');
-
 
 //Kiosk toggle student route
 Route::post('kiosks/{kiosk}/togglestudent/{student}', 'KioskController@toggleStudent');
@@ -49,6 +48,5 @@ Route::get('kiosks/{kiosk}/logs', 'KioskController@logs');
 
 //Standard kiosk route initialization
 Route::resource('kiosks', 'KioskController');
-
 
 Route::resource('users', 'UserController');
