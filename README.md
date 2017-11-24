@@ -1,5 +1,5 @@
 # BluePanel
-
+[![StyleCI](https://styleci.io/repos/111870853/shield?branch=master)](https://styleci.io/repos/111870853)
 *Because a piece of paper isn't good enough*
 
 BluePanel is a tool designed for H.B Beal secondary school to log students going into support rooms. Teachers will be able to view theese statistics via the web gui. There is a permissions system in which is outlined below. This project is open source and we invite anyone to contribute and use this amazing tool.
@@ -22,7 +22,7 @@ BluePanel uses the Laravel framework as well as AdminLTE for the dashboard theme
 License
 ----
 
-GPL
+GNU General Public License V3
 
 
 **Free Software, WOOHOO!**
