@@ -1,0 +1,7 @@
+/* style.css
+Presumably for custom css */
+
+.select2-selection__choice{
+ background-color:inherit;
+ color:red; /* for testing */
+}

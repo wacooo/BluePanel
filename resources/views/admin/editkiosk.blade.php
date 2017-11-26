@@ -99,6 +99,12 @@
 
 @endpush
 @section('content')
+    <!-- added by MH to fix adding times (which were invisible). Where else is custom CSS put? -->
+    <style>
+    li.select2-selection__choice {
+       background-color:#3c8dbc !important;
+    }
+    </style>
 
     <div class="row">
         <div class="col-lg-6">
@@ -232,8 +238,7 @@
                                 <td>{{$user->created_at}}</td>
                                 <td>
                                     <button onclick="removeTimeFromKiosk('{{$schedule->time}}')"
-                                            class="btn btn-xs btn-danger"><i
-                                                class="fa fa-trash-o"></i> Revoke
+                                            class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> Revoke
                                     </button>
                                 </td>
                             </tr>
