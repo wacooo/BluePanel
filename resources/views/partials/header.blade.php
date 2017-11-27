@@ -24,7 +24,7 @@
 
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
-                <a href="/login">
+                <a href=""><!-- this is needed to get the formatting correct even though it's not a link! -->
                     @auth
                         <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100"
                              class="user-image" alt="User Image">
@@ -46,9 +46,14 @@
                 @auth
                 <a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
                    data-original-title="Logout"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                            class="fa fa-power-off"></i></a></li>
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i></a></li>
                 @endauth
+                @guest
+		<a href="/login">
+			<i class="fa fa-sign-in"></i><!-- this needs to be separated from the left more. Maybe bigger too -->
+		</a>
+		@endguest
+
         </ul>
 
         <!-- Control Sidebar Toggle Button -->
