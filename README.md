@@ -1,4 +1,9 @@
 # BluePanel
+[![StyleCI](https://styleci.io/repos/111870853/shield?branch=master)](https://styleci.io/repos/111870853)
+
+Master [![Build Status](https://travis-ci.org/BealDevelopment/BluePanel.svg?branch=master)](https://travis-ci.org/BealDevelopment/BluePanel)
+
+Dev [![Build Status](https://travis-ci.org/BealDevelopment/BluePanel.svg?branch=dev)](https://travis-ci.org/BealDevelopment/BluePanel)
 
 *Because a piece of paper isn't good enough*
 
@@ -22,7 +27,7 @@ BluePanel uses the Laravel framework as well as AdminLTE for the dashboard theme
 License
 ----
 
-GPL
+GNU General Public License V3
 
 
 **Free Software, WOOHOO!**
