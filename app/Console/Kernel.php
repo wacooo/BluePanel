@@ -37,10 +37,9 @@ class Kernel extends ConsoleKernel
 
             foreach ($kioskSched as $entry) {
                 //trim off mysql seconds
-                $schedule->command('kiosk:signoutstudents ' . $entry->id)
+                $schedule->command('kiosk:signoutstudents '.$entry->id)
                     ->dailyAt($entry->time);
             }
-
         } catch (\Exception $e) {
             //We dont care if it fails
         }
@@ -56,7 +55,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }
