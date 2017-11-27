@@ -12,7 +12,7 @@ class ImportStudents extends Command
      *
      * @var string
      */
-    protected $signature = 'studentdb:import {file}';
+    protected $signature = 'studentdb:import';
 
     /**
      * The console command description.
@@ -40,7 +40,7 @@ class ImportStudents extends Command
     {
         //Define flag to ignore first row of markbook contents because markbook sucks and is outdated
         $flag = true;
-        if (($handle = fopen($this->argument('file'), 'r')) !== false) {
+        if (($handle = fopen(env('STUDENT_IMPORT_FILE'), 'r')) !== false) {
             while (($data = fgetcsv($handle, 1000, ',')) !== false) {
                 if ($flag) {
                     $flag = false;
