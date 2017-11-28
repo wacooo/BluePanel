@@ -105,7 +105,11 @@
                 text: "You are signed into room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
-                timer:"5000"
+                //timer:"5000"
+		function() {
+ 		  setTimeout(function() {
+  		    $('#input').focus();
+		  }, 5000);
             });
         }
         function signout(student) {
@@ -114,7 +118,11 @@
                 text: "You are signed out of room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
-                timer:"5000"
+                //timer:"5000"
+		function() {
+ 		  setTimeout(function() {
+  		    $('#input').focus();
+		  }, 5000);
             });
         }
         function errormsg() {
@@ -123,7 +131,11 @@
                 icon: "error",
                 text: "The student was not found or there was an unexpected database error.",
                 type:"error",
-                timer:"5000"
+                //timer:"5000"
+		function() {
+ 		  setTimeout(function() {
+  		    $('#input').focus();
+		  }, 5000);
             });
         }
     </script>
