@@ -69,12 +69,9 @@
                                        buttons: true,
                                        dangerMode: true,
                                        }).then((willRedirect) => {
-                                       if (willRedirect) {
-                                       window.location = '/kiosks/{{$kiosk->id}}';
-                                       }
-                                       else {
-                                       swal('Phewf! That was a close one!');
-                                       }
+                                         if (willRedirect) {
+                                           window.location = '/kiosks/{{$kiosk->id}}';
+                                         }
                                        });
                                        ">
                                 <i class="fa fa-circle-o"></i>
