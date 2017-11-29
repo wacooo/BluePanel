@@ -51,7 +51,6 @@ Route::resource('kiosks', 'KioskController');
 
 Route::resource('users', 'UserController');
 
-
 Route::get('urlauth/{token}', function (\Illuminate\Http\Request $request, $token) {
     if ($token === env('URL_SECRET')) {
         $request->session()->put('guest-url-auth', true);
@@ -60,4 +59,5 @@ Route::get('urlauth/{token}', function (\Illuminate\Http\Request $request, $toke
     } else {
         return redirect('/login');
     }
+    
 });
