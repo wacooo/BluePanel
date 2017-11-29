@@ -10,13 +10,13 @@ class URLAuthMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-
         if ($request->session()->get('guest-url-auth') || Auth::check()) {
             return $next($request);
         } else {
