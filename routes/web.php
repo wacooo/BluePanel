@@ -30,7 +30,8 @@ Route::get('home', 'HomeController@index')->name('home');
 
 /*
  * Kiosk user linking routes
- */view('kiosklogs');
+ */
+
 Route::delete('kiosks/{kiosk}/detach/{user}', 'KioskController@detach');
 Route::post('kiosks/{kiosk}/attach/{user}', 'KioskController@attach');
 
@@ -50,3 +51,13 @@ Route::get('kiosks/{kiosk}/logs', 'KioskController@logs');
 Route::resource('kiosks', 'KioskController');
 
 Route::resource('users', 'UserController');
+
+Route::get('urlauth/{token}', function (\Illuminate\Http\Request $request, $token) {
+    if ($token === env('URL_SECRET')) {
+        $request->session()->put('guest-url-auth', true);
+
+        return redirect('/home');
+    } else {
+        return redirect('/login');
+    }
+});

@@ -230,7 +230,7 @@
                             <th>Scheduled Time</th>
                             <th>Created At</th>
                         </tr>
-                        @foreach($kiosk->schedule as $schedule)
+                        @foreach($kiosk->schedule->sortBy('time') as $schedule)
                             <tr>
 
                                 <td><code>{{$schedule->id}}</code></td>
