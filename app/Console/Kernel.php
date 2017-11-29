@@ -36,9 +36,7 @@ class Kernel extends ConsoleKernel
             }
 
             foreach ($kioskSched as $entry) {
-                //trim off mysql seconds
-                $schedule->command('kiosk:signoutstudents '.$entry->id)
-                    ->dailyAt($entry->time);
+                $schedule->command('kiosk:signoutstudents '.$entry->kiosk_id)->dailyAt($entry->time);
             }
         } catch (\Exception $e) {
             //We dont care if it fails
