@@ -30,7 +30,8 @@ Route::get('home', 'HomeController@index')->name('home');
 
 /*
  * Kiosk user linking routes
- */view('kiosklogs');
+ */
+
 Route::delete('kiosks/{kiosk}/detach/{user}', 'KioskController@detach');
 Route::post('kiosks/{kiosk}/attach/{user}', 'KioskController@attach');
 
@@ -59,5 +60,4 @@ Route::get('urlauth/{token}', function (\Illuminate\Http\Request $request, $toke
     } else {
         return redirect('/login');
     }
-    
 });
