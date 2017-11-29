@@ -17,7 +17,7 @@ class URLAuthMiddleware
     public function handle($request, Closure $next)
     {
 
-        if ($request->session()->get('guest') || Auth::check()) {
+        if ($request->session()->get('guest-url-auth') || Auth::check()) {
             return $next($request);
         } else {
             return redirect('/login');
