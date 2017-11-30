@@ -105,12 +105,10 @@
                 text: "You are signed into room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
-                //timer:"5000"
-		function() {
- 		  setTimeout(function() {
-  		    $('#input').focus();
-		  }, 5000);
+ 		timer:5000
             });
+ 	    setTimeout( function() { $('#input').focus(); }, 1000);
+ 	    setTimeout( function() { $('#input').focus(); }, 5000);
         }
         function signout(student) {
             swal({
@@ -118,12 +116,10 @@
                 text: "You are signed out of room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
-                //timer:"5000"
-		function() {
- 		  setTimeout(function() {
-  		    $('#input').focus();
-		  }, 5000);
+ 		timer:5000
             });
+ 	    setTimeout( function() { $('#input').focus(); }, 1000);
+ 	    setTimeout( function() { $('#input').focus(); }, 5000);
         }
         function errormsg() {
             swal({
@@ -131,12 +127,10 @@
                 icon: "error",
                 text: "The student was not found or there was an unexpected database error.",
                 type:"error",
-                //timer:"5000"
-		function() {
- 		  setTimeout(function() {
-  		    $('#input').focus();
-		  }, 5000);
+ 		timer:5000
             });
+ 	    setTimeout( function() { $('#input').focus(); }, 1000);
+ 	    setTimeout( function() { $('#input').focus(); }, 5000);
         }
     </script>
     <script src="{{asset('/vendor/sweetalert/sweetalert.min.js')}}"></script>
