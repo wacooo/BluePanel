@@ -238,7 +238,7 @@
                                 <td>{{$user->created_at}}</td>
                                 <td>
                                     <button onclick="removeTimeFromKiosk('{{$schedule->time}}')"
-                                            class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> Revoke
+                                            class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> Remove
                                     </button>
                                 </td>
                             </tr>
