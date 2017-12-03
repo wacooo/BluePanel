@@ -27,7 +27,7 @@
         <li class="{{ Request::is('/home') ? 'active' : '' }}">
 
             <a href="/home" title="Students currently logged in">
-                <i class="fa fa-user-secret"></i> <span>Current Students</span>
+                <i class="fa fa-user-secret"></i> <span>Students logged in</span>
                 <span class="pull-right-container">
                         </span>
             </a>
