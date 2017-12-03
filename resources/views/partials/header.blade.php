@@ -17,6 +17,8 @@
 
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+		<li>
+		<?php $branch = exec('git rev-parse --abbrev-ref HEAD'); echo "Branch=".$branch; ?>
             <!-- Messages: style can be found in dropdown.less-->
             <!-- Notifications: style can be found in dropdown.less -->
 

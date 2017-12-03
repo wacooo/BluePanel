@@ -106,9 +106,9 @@
                 icon: "success",
                 type:"success",
  		timer:5000
-            });
- 	    setTimeout( function() { $('#input').focus(); }, 1000);
- 	    setTimeout( function() { $('#input').focus(); }, 5000);
+            }).then(
+		function() { $('#input').focus() }
+	);
         }
         function signout(student) {
             swal({
@@ -117,9 +117,10 @@
                 icon: "success",
                 type:"success",
  		timer:5000
-            });
- 	    setTimeout( function() { $('#input').focus(); }, 1000);
- 	    setTimeout( function() { $('#input').focus(); }, 5000);
+            
+		}).then(
+		function() { $('#input').focus() }
+		);
         }
         function errormsg() {
             swal({
@@ -128,10 +129,10 @@
                 text: "The student was not found or there was an unexpected database error.",
                 type:"error",
  		timer:5000
-            });
- 	    setTimeout( function() { $('#input').focus(); }, 1000);
- 	    setTimeout( function() { $('#input').focus(); }, 5000);
-        }
+            }).then(
+	
+ 	    function() { $('#input').focus() }
+        	)};
     </script>
     <script src="{{asset('/vendor/sweetalert/sweetalert.min.js')}}"></script>
 </head>
