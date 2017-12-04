@@ -1,3 +1,9 @@
+<!-- increase size to match larger size for font-awesome sign in/out icons  -->
+<style>
+.main-header .logo{
+height:58px;
+}
+</style>
 <!-- Logo -->
 <a href="/" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -17,6 +23,8 @@
 
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+		<li>
+		<?php $branch = exec('git rev-parse --abbrev-ref HEAD'); echo "Branch=".$branch; ?>
             <!-- Messages: style can be found in dropdown.less-->
             <!-- Notifications: style can be found in dropdown.less -->
 
@@ -46,11 +54,11 @@
                 @auth
                 <a href="{{route('logout')}}" id="logoutButton" data-toggle="tooltip" data-placement="bottom" title=""
                    data-original-title="Logout"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i></a></li>
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-2x"></i></a></li>
                 @endauth
                 @guest
 		<a href="/login">
-			<i class="fa fa-sign-in"></i><!-- this needs to be separated from the left more. Maybe bigger too -->
+			<i class="fa fa-sign-in fa-2x"></i><!-- this needs to be separated from the left more. Maybe bigger too -->
 		</a>
 		@endguest
 

@@ -26,8 +26,8 @@
 
         <li class="{{ Request::is('/home') ? 'active' : '' }}">
 
-            <a href="/home">
-                <i class="fa fa-user-secret"></i> <span>Present Students</span>
+            <a href="/home" title="Students currently logged in">
+                <i class="fa fa-user-secret"></i> <span>Students logged in</span>
                 <span class="pull-right-container">
                         </span>
             </a>
@@ -35,7 +35,7 @@
 
         <li class="treeview">
             <a href="">
-                <i class="fa fa-clock-o"></i> <span>Recent Students</span>
+                <i class="fa fa-clock-o"></i> <span>Kiosk Logs</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -53,7 +53,7 @@
             <li class="header">User Tasks</li>
             <li class="treeview">
                 <a href="">
-                    <i class="fa fa-desktop"></i> <span>My Kiosks</span>
+                    <i class="fa fa-desktop"></i> <span>Start Kiosk</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
