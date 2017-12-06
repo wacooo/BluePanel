@@ -7,8 +7,9 @@
                 processing: true,
                 serverSide: true,
                 stateSave: true,
+		"order": [[ 1, 'asc' ], [ 2, 'asc' ]],
 
-                "autoWidth": false,
+                "autoWidth": true,
                 ajax: '/kiosks/{{$kiosk->id}}/logs',
                 columns: [
                     {data: 'id', name: 'id'},
@@ -17,7 +18,7 @@
                     {data: 'gender', name: 'gender'},
                     {data: 'pivot.type', name:'pivot.type'},
                     {data: 'pivot.created_at', name: 'pivot.created_at'},
-                    {data: 'pivot.updated_at', name: 'pivot.updated_at'}
+                //    {data: 'pivot.updated_at', name: 'pivot.updated_at'}
                 ]
             });
         });
@@ -44,8 +45,8 @@
                         <th>First</th>
                         <th>Gender</th>
                         <th>Type</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
+                        <th>Sign In/Out time</th>
+                  <!--      <th>Updated At</th>		-->
                     </tr>
                     </thead>
                 </table>
