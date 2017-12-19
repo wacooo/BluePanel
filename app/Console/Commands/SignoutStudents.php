@@ -41,7 +41,8 @@ class SignoutStudents extends Command
         $kiosk = \App\Kiosk::findOrFail($kioskid);
 
         foreach ($kiosk->students as $student) {
-            $kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] End Of Period']);
+            $kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] Sign Out']);
+            //$kiosk->logs()->attach($student->id, ['type' => '[AUTOMATED] End Of Period']);
             $kiosk->students()->detach($student->id);
         }
         $this->info('All students signed out :)');
