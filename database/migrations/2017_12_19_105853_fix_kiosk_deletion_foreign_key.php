@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class FixKioskDeletionForeignKey extends Migration
 {
@@ -13,16 +13,15 @@ class FixKioskDeletionForeignKey extends Migration
      */
     public function up()
     {
-	Schema::table('kiosk_logs', function (Blueprint $table) {
-		$table->dropForeign('kiosk_logs_kiosk_id_foreign');
-	});
+        Schema::table('kiosk_logs', function (Blueprint $table) {
+            $table->dropForeign('kiosk_logs_kiosk_id_foreign');
+        });
 
-	Schema::table('kiosk_logs', function (Blueprint $table) {
-		$table->foreign('kiosk_id')->references('id')->on('kiosks')
-			->onDelete('cascade')
-			->onUpdate('cascade');
-	});
-
+        Schema::table('kiosk_logs', function (Blueprint $table) {
+            $table->foreign('kiosk_id')->references('id')->on('kiosks')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        });
     }
 
     /**
