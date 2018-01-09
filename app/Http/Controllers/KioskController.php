@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class KioskController extends Controller
 {
     /**
@@ -38,7 +39,7 @@ class KioskController extends Controller
      * Show the logs of a kiosk.
      *
      * @param Request $request
-     * @param Kiosk   $kiosk
+     * @param Kiosk $kiosk
      *
      * @return Response
      */
@@ -69,13 +70,11 @@ class KioskController extends Controller
     public function store(Request $request)
     {
         $validatedRequest = $request->validate([
-            'name'=> 'required|string|max:20',
-            'room'=> 'required|integer',
-
+            'name' => 'required|string|max:20',
+            'room' => 'required|integer',
         ]);
-        $request->add(['secret' => str_random(20)]);
-        
-        Kiosk::create($validatedRequest);
+
+        Kiosk::create($validatedRequest + ['secret' =>  str_random(20)]);
 
         return redirect('/kiosks');
     }
@@ -94,7 +93,7 @@ class KioskController extends Controller
             Auth::logout();
         }
 
-        return view('kiosk')->with(['kiosk'=> $kiosk, 'lockout'=>$request->session()->get('lockout')]);
+        return view('kiosk')->with(['kiosk' => $kiosk, 'lockout' => $request->session()->get('lockout')]);
     }
 
     /**
@@ -119,8 +118,8 @@ class KioskController extends Controller
     public function update(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'name'=> 'required|string|max:20',
-            'room'=> 'required|Integer',
+            'name' => 'required|string|max:20',
+            'room' => 'required|Integer',
 
         ]);
 
@@ -205,7 +204,7 @@ class KioskController extends Controller
     public function addScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-           'time'=> 'string',
+            'time' => 'string',
         ]);
 
         $time = $validatedRequest['time'];
@@ -229,7 +228,7 @@ class KioskController extends Controller
     public function deleteScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'time'=> 'string',
+            'time' => 'string',
         ]);
 
         $time = $validatedRequest['time'];
