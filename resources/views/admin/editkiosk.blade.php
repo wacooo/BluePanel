@@ -286,10 +286,23 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+
                 </div>
 
             </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Direct Auth URL</h3>
+                </div>
+                <div class="box-body">
+                    <div class="callout callout-info callout-nomargin">
+                        This URL will directly authenticate a kiosk session and should be kept secret.<br><a href="{{URL::to('/kioskauth/' . $kiosk->secret)}}" target="_blank">Right click and copy link address</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
         <div class="col-lg-12">
             <div class="box box-danger">
                 <div class="box-header with-border">
