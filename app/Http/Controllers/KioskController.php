@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
 class KioskController extends Controller
 {
     /**
@@ -40,7 +39,7 @@ class KioskController extends Controller
      * Show the logs of a kiosk.
      *
      * @param Request $request
-     * @param Kiosk $kiosk
+     * @param Kiosk   $kiosk
      *
      * @return Response
      */
