@@ -14,7 +14,7 @@ class AddSecretToKiosksTable extends Migration
     public function up()
     {
         Schema::table('kiosks', function (Blueprint $table) {
-            $table->string('secret')->nullable();
+            $table->string('secret');
         });
     }
 
