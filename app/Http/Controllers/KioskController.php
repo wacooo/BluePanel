@@ -8,6 +8,7 @@ use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class KioskController extends Controller
@@ -74,7 +75,7 @@ class KioskController extends Controller
             'room' => 'required|integer',
         ]);
 
-        Kiosk::create($validatedRequest + ['secret' =>  str_random(20)]);
+        Kiosk::create($validatedRequest + ['secret' =>  Hash::make(str_random(8))]);
 
         return redirect('/kiosks');
     }
