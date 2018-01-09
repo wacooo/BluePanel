@@ -73,6 +73,8 @@ class KioskController extends Controller
             'room'=> 'required|integer',
 
         ]);
+        $request->add(['secret' => str_random(20)]);
+        
         Kiosk::create($validatedRequest);
 
         return redirect('/kiosks');
