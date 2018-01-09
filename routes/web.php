@@ -61,3 +61,14 @@ Route::get('urlauth/{token}', function (\Illuminate\Http\Request $request, $toke
         return redirect('/login');
     }
 });
+
+Route::get('kioskauth/{token}', function (\Illuminate\Http\Request $request, $token) {
+    $kiosk = App\Kiosk::where('secret', $token)->first();
+    if($kiosk){
+        $request->session()->put('lockout', true);
+        return redirect('/kiosks/' . $kiosk->id);
+    }
+    else {
+        return redirect('/login');
+    }
+});
