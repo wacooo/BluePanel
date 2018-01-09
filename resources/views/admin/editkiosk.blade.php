@@ -309,8 +309,6 @@
             </div>
         </div>
     </div>
-    <!--
-    https://medium.com/@megvis17/film-analysis-of-the-movie-pleasantville-d30701e3d3d9
-    -->
+
 
 @endsection
