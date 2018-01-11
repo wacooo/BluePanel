@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kiosk extends Model
 {
     protected $table = 'kiosks';
-    protected $fillable = ['room', 'name'];
+    protected $fillable = ['room', 'name', 'secret'];
     public $timestamps = true;
 
     public function students()

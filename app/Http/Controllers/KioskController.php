@@ -8,6 +8,7 @@ use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class KioskController extends Controller
 {
@@ -69,11 +70,11 @@ class KioskController extends Controller
     public function store(Request $request)
     {
         $validatedRequest = $request->validate([
-            'name'=> 'required|string|max:20',
-            'room'=> 'required|integer',
-
+            'name' => 'required|string|max:20',
+            'room' => 'required|integer',
         ]);
-        Kiosk::create($validatedRequest);
+
+        Kiosk::create($validatedRequest + ['secret' =>  Hash::make(str_random(8))]);
 
         return redirect('/kiosks');
     }
@@ -92,7 +93,7 @@ class KioskController extends Controller
             Auth::logout();
         }
 
-        return view('kiosk')->with(['kiosk'=> $kiosk, 'lockout'=>$request->session()->get('lockout')]);
+        return view('kiosk')->with(['kiosk' => $kiosk, 'lockout' => $request->session()->get('lockout')]);
     }
 
     /**
@@ -117,8 +118,8 @@ class KioskController extends Controller
     public function update(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'name'=> 'required|string|max:20',
-            'room'=> 'required|Integer',
+            'name' => 'required|string|max:20',
+            'room' => 'required|Integer',
 
         ]);
 
@@ -203,7 +204,7 @@ class KioskController extends Controller
     public function addScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-           'time'=> 'string',
+            'time' => 'string',
         ]);
 
         $time = $validatedRequest['time'];
@@ -227,7 +228,7 @@ class KioskController extends Controller
     public function deleteScheduleTime(Request $request, Kiosk $kiosk)
     {
         $validatedRequest = $request->validate([
-            'time'=> 'string',
+            'time' => 'string',
         ]);
 
         $time = $validatedRequest['time'];
