@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
+    protected $fillable = ['id', 'first', 'last','gender'];
     protected $table = 'students';
     public $timestamps = false;
 

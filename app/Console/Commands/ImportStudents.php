@@ -46,13 +46,15 @@ class ImportStudents extends Command
                     $flag = false;
                     continue;
                 }
-                $student = new Student();
-                $student->last = utf8_encode($data[0]);
-                $student->first = utf8_encode($data[1]);
-                $student->gender = utf8_encode($data[2]);
-                $student->id = utf8_encode($data[3]);
-
-                $student->save();
+                Student::updateOrCreate([
+                        'id'=>utf8_encode($data[3])
+                    ]
+                    , [
+                        'last' => utf8_encode($data[0]),
+                        'first' => utf8_encode($data[1]),
+                        'gender' => utf8_encode($data[2]),
+                    ]
+                );
             }
             fclose($handle);
             $this->info('Student database imported successfully! :D');
