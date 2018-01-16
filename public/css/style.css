@@ -1,1 +1,13 @@
-
+/* AdminLTE CSS is in public/vendor/adminlte/css/AdminLTE.css */
+/* increase size to match larger size for font-awesome sign in/out icons  */
+.main-header .logo{
+  height:58px;
+}
+/* for nav panel on side */
+.user-panel > .info {
+  position:relative;
+}
+/* prevent menu from collapsing */
+.sidebar-menu .treeview-menu {
+display: inherit; 
+}
