@@ -1,16 +1,7 @@
 <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel">
-        <div class="pull-left image">
-            @auth
-                <img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=100"
-                     class="img-circle" alt="User Image">
-            @endauth
-            @guest
-                <img src="{{asset('vendor/adminlte/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-            @endguest
-        </div>
-        <div class="pull-left info">
+  <div class="user-panel">
+    <!--    <div class="pull-left info">
             @guest
                 <p>Guest</p>
             @endguest
@@ -19,10 +10,10 @@
             @endauth
 
         </div>
+-->
     </div>
-
     <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">ACTIVITIES</li>
+        <li class="header bg-blue">LOGS</li>
 
         <li class="{{ Request::is('/home') ? 'active' : '' }}">
 
@@ -50,7 +41,7 @@
             </ul>
         </li>
         @auth
-            <li class="header">User Tasks</li>
+            <li class="header bg-blue">USER TASKS</li>
             <li class="treeview">
                 <a href="">
                     <i class="fa fa-desktop"></i> <span>Start Kiosk</span>
@@ -85,8 +76,7 @@
 
             @if ( Auth::user()->isAdministrator())
 
-
-                <li class="header">Administrative Tasks</li>
+                <li class="header bg-green">ADMINISTRATIVE TASKS</li>
 
 
                 <li class="{{ Request::is('kiosks') ? 'active' : '' }}">
