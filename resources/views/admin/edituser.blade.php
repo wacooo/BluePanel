@@ -30,15 +30,22 @@
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
+			<div class="form-group">
+                              <label for="username" class="control-label">Username</label>
+                              <div>
+                                  <input type="text" name="username" value="{{$user->username}}"
+                                         class="form-control form-autocomplete-stop">
+                              </div>
+                        </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">Client First Name</label>
+                            <label for="name_first" class="control-label">Client First Name</label>
                             <div>
                                 <input type="text" name="name_first" value="{{$user->name_first}}"
                                        class="form-control form-autocomplete-stop">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="registered" class="control-label">Client Last Name</label>
+                            <label for="name_last" class="control-label">Client Last Name</label>
                             <div>
                                 <input type="text" name="name_last" value="{{$user->name_last}}"
                                        class="form-control form-autocomplete-stop">

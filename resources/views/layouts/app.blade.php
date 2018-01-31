@@ -11,9 +11,11 @@
     <header class="main-header">
         @include('partials.header')
     </header>
+    @if(Session::get('guest-url-auth') || Auth::check())
     <aside class="main-sidebar">
         @include('partials.nav')
     </aside>
+    @endif
     <div class="content-wrapper">
         <section class="content-header">
             @yield('content-header')
