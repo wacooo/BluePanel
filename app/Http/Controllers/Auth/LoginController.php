@@ -38,10 +38,8 @@ class LoginController extends Controller
     }
 
     //for username
-/*
     public function username()
     {
         return 'username';
     }
-*/
 }
