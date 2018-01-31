@@ -49,8 +49,8 @@ class UserController extends Controller
         $validatedRequest = $request->validate([
             'name_first'=> 'required|string|max:15',
             'name_last' => 'required|string|max:15',
-            'email'     => 'required|email|unique:users|', 
-            'username' => 'required|string|unique:users|min:5',
+            'email'     => 'required|email|unique:users|',
+            'username'  => 'required|string|unique:users|min:5',
             'password'  => 'string|required',
         ]);
         User::create($validatedRequest);
@@ -94,7 +94,7 @@ class UserController extends Controller
             'name_first'=> 'required|string|max:15',
             'name_last' => 'required|string|max:15',
             'email'     => 'required|email',
-            'username' => 'required|string|unique:users|min:5',
+            'username'  => 'required|string|unique:users|min:5',
             'isadmin'   => 'required|integer',
         ]);
         //If there is a password change request
