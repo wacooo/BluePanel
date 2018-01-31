@@ -47,8 +47,15 @@ class KioskController extends Controller
     {
         if ($request->ajax()) {
             return datatables()->of($kiosk->logs)->make(true);
+        //return datatables()->of($kiosk->logs)->whereDate('created_at', '=', date('2018-01-19'))->make(true);
+//select current month
+//		logs::where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+//select current day
+//  whereDate('created_at', '=', \Carbon\Carbon::today()->toDateString())
         } else {
             return view('kiosklogs')->with('kiosk', $kiosk);
+            //return view('kiosklogs')->with('kiosk', $kiosk)->with('created_at', date('2018-01-19'));
+            //return view('kiosklogs')->with('kiosk', $kiosk)->whereDate('created_at', '=', date('Y-m-d'));
         }
     }
 
