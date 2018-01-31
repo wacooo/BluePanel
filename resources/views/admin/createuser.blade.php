@@ -22,6 +22,13 @@
                     </div>
                     <div class="box-body">
                         <div class="form-group">
+                            <label for="registered" class="control-label">Username</label>
+                            <div>
+                                <input type="username" name="username" placeholder="egallant"
+                                       class="form-control form-autocomplete-stop">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="registered" class="control-label">Email</label>
                             <div>
                                 <input type="email" name="email" placeholder="galletha250@gotvsdb.ca"
