@@ -33,22 +33,25 @@
                         <tbody>
                         <tr>
                             <th>ID</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Name</th>
                             <th>Administrator</th>
-                            <th>Username</th>
                             <th>Created</th>
                             <th></th>
                         </tr>
                         @foreach (\App\User::all() as $user)
                             <tr>
                                 <td><code>{{$user->id}}</code></td>
+                                <td><a href="{{route('users.edit', $user->id)}}">{{$user->username}}</a></td>
                                 <td><a href="{{route('users.edit', $user->id)}}">{{$user->email}}</a></td>
                                 <td>{{ucfirst($user->name_last)}}, {{ucfirst($user->name_first)}}</td>
                                 <td><code>{{$user->isadmin ? 'true' : 'false'}}</code></td>
-                                <td>{{$user->username}}</td>
                                 <td>{{$user->created_at}}</td>
-                                <td class="text-center"><img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( $user->email ) ) )}}?s=100" style="height:20px;" class="img-circle"></td></tr>
+<!-- remove avatar
+                                <td class="text-center"><img src="https://s.gravatar.com/avatar/{{md5( strtolower( trim( $user->email ) ) )}}?s=100" style="height:20px;" class="img-circle"></td>
+-->
+			   </tr>
                         @endforeach
                         </tbody>
                     </table>
