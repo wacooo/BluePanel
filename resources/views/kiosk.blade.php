@@ -142,7 +142,7 @@
     <h2 class="text-center">{{$kiosk->name}}</h2>
     <input type="text" style="text-align: center" id="input" onkeydown="if (event.keyCode === 13)
                         document.getElementById('button').click()" autofocus><br>
-    <button type="button" id="button">Sign in</button>
+    <button type="button" id="button">Sign in/out</button>
 
 </div>
 
