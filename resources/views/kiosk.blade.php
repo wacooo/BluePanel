@@ -105,7 +105,7 @@
                 text: "You are signed into room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
- 		timer:5000
+ 		timer:6000
             }).then(
 		function() { $('#input').focus() }
 	);
@@ -116,7 +116,7 @@
                 text: "You are signed out of room {{$kiosk->room}}",
                 icon: "success",
                 type:"success",
- 		timer:5000
+ 		timer:6000
             
 		}).then(
 		function() { $('#input').focus() }
@@ -128,7 +128,7 @@
                 icon: "error",
                 text: "The student was not found or there was an unexpected database error.",
                 type:"error",
- 		timer:5000
+ 		timer:6000
             }).then(
 	
  	    function() { $('#input').focus() }

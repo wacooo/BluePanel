@@ -34,7 +34,10 @@
             <ul class="treeview-menu">
                 @foreach(\App\Kiosk::all() as $kiosk)
                     <li>
-                        <a href="/kiosks/{{$kiosk->id}}/logs"><i class="fa fa-circle-o"></i>{{$kiosk->name}}</a>
+			<hr>
+                        <a href="/kiosks/{{$kiosk->id}}/todaylogs"><i class="fa fa-circle-o"></i>{{$kiosk->name}} - today</a>
+                        <a href="/kiosks/{{$kiosk->id}}/logs"><i class="fa fa-circle"></i>{{$kiosk->name}} - yesterday</a>
+                        <a href="/kiosks/{{$kiosk->id}}/logs"><i class="fa fa-list"></i>{{$kiosk->name}} - all</a>
                     </li>
                 @endforeach
 

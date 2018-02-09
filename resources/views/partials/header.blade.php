@@ -40,7 +40,7 @@
                     @endguest
 -->
                     @guest
-                        <span class="hidden-xs">Guest</span>
+                        <span class="hidden-xs">Please log in</span>
                     @endguest
 
                     @auth
