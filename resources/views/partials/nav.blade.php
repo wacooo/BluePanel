@@ -1,3 +1,12 @@
+@if ( Auth::user()->username == 'teacher') 
+
+/* prevent side nav menus from collapsing for 'teacher' user (ie. viewOnly)*/
+<style>
+.sidebar-menu .treeview-menu {
+display: inherit; 
+}
+</style>
+@endif
 <section class="sidebar">
     <!-- Sidebar user panel -->
   <div class="user-panel">
@@ -20,7 +29,7 @@
             <a href="/home" title="Students currently logged in">
                 <i class="fa fa-user-secret"></i> <span>Students logged in</span>
                 <span class="pull-right-container">
-                        </span>
+                </span>
             </a>
         </li>
 
@@ -44,6 +53,10 @@
             </ul>
         </li>
         @auth
+	{{-- FIXME: this should be a field in the user table: viewOnly, then the following could work
+		@if ( Auth::user()->isViewOnly()) 
+	--}}
+	@if ( Auth::user()->username != 'teacher') 
             <li class="header bg-blue">USER TASKS</li>
             <li class="treeview">
                 <a href="">
@@ -77,6 +90,7 @@
 
             </li>
 
+        @endif
             @if ( Auth::user()->isAdministrator())
 
                 <li class="header bg-green">ADMINISTRATIVE TASKS</li>

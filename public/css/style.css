@@ -7,7 +7,9 @@
 .user-panel > .info {
   position:relative;
 }
-/* prevent menu from collapsing */
+/* prevent side nav menus from collapsing */
+/*
 .sidebar-menu .treeview-menu {
 display: inherit; 
 }
+*/
